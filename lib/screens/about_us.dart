@@ -177,7 +177,11 @@ class _AboutUsState extends State<AboutUs> with SingleTickerProviderStateMixin {
 
               // color: Colors.transparent,
               child: TabBar(
-                indicatorColor: Colors.transparent,
+                indicator: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color(0x40999999), Color(0x40000000)],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter)),
                 controller: tabContrlr,
                 tabs: <Widget>[
                   Padding(
