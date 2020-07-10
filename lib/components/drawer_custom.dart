@@ -46,7 +46,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             onTap: () {
-              Navigator.popUntil(context, ModalRoute.withName("/home"));
+              Navigator.of(context).pushNamed("/home");
             },
             title: Text(
               'Home',
