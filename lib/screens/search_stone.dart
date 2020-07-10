@@ -103,9 +103,7 @@ class _StoneSearchState extends State<StoneSearch> {
       si3Selected = false,
       i1Selected = false,
       i2Selected = false,
-      i3Selected = false,
-      i4Selected = false;
-      
+      i3Selected = false; 
 
   void updateClarity(
       bool flSelected1,
@@ -424,6 +422,9 @@ class _StoneSearchState extends State<StoneSearch> {
       ),
       appBar: AppBar(
         title: Text('Stone Search'),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.home), onPressed: () => Navigator.of(context).pushNamed('/home'))
+        ],
       ),
       key: scaffoldKey,
       body: Form(
@@ -432,27 +433,6 @@ class _StoneSearchState extends State<StoneSearch> {
             child: Container(
               child: Column(
                 children: <Widget>[
-                  // Stone ID/Cert No text box
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                    child: TextFormField(
-                      // style: TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            // borderSide: BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Stone ID / Cert No.',
-                          hintStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black)),
-                    ),
-                  ),
-
                   //Shapes option
                   Padding(
                     padding:

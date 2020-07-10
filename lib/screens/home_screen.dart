@@ -34,25 +34,28 @@ class _HomeScreenState extends State<HomeScreen> {
     precacheImage(AssetImage('images/home_carousel/mob03.jpg'), context);
 
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
       body: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-              color: primaryBlack.shade500,
-              image: DecorationImage(
-                  image: AssetImage('images/img9.jpg'),
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      primaryBlack.shade500, BlendMode.luminosity))),
+              color: Colors.grey[100],
+            ),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                HomeCarousel(),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  height: 250,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage('images/img9.jpg'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      primaryBlack.shade500, BlendMode.luminosity))
+                  ),
+                  child: Image.asset('images/LogoNew.png'),
+                ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                  padding: EdgeInsets.fromLTRB(10, 40, 10, 10),
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed('/searchPage');
@@ -62,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                     child: Container(
+                      width: 280,
                       height: 60,
                       child: Row(
                         children: <Widget>[
@@ -77,8 +81,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                 Padding(
+                  padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/gallary");
+                    },
+                    elevation: 5.0,
+                    // fillColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30))),
+                    child: Container(
+                      width: 280,
+                      height: 60,
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Icon(Icons.photo_album),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Text('Gallary'))
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                  padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed("/aboutUs");
@@ -88,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                     child: Container(
+                      width: 280,
                       height: 60,
                       child: Row(
                         children: <Widget>[
@@ -104,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                  padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
                   child: RaisedButton(
                     onPressed: () {},
                     elevation: 5.0,
@@ -112,6 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                     child: Container(
+                      width: 280,
                       height: 60,
                       child: Row(
                         children: <Widget>[
@@ -126,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           )),

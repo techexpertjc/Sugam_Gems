@@ -318,6 +318,9 @@ class _SearchResultsState extends State<SearchResults> {
         key: scaffoldKey,
         appBar: AppBar(
           title: Text('Search Results'),
+          actions: <Widget>[
+          IconButton(icon: Icon(Icons.home), onPressed: () => Navigator.of(context).pushNamed('/home'))
+        ],
         ),
         bottomNavigationBar: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

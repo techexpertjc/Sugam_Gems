@@ -22,6 +22,9 @@ class _AboutUsState extends State<AboutUs> with SingleTickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: Text('About Us'),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.home), onPressed: () => Navigator.of(context).pushNamed('/home'))
+        ],
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,

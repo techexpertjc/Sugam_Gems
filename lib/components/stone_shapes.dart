@@ -78,7 +78,7 @@ class _StoneShapesState extends State<StoneShapes> {
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
                         colors: changeColorAll
-                            ? [Colors.blue[300], Colors.yellow]
+                            ? [Colors.black87, Colors.black38]
                             : [Colors.transparent, Colors.transparent])),
                 child: Column(
                   children: <Widget>[
@@ -131,7 +131,7 @@ class _StoneShapesState extends State<StoneShapes> {
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
                         colors: changeColorRound
-                            ? [Colors.blue[300], Colors.red]
+                            ? [Colors.blue[300], Colors.blue[900]]
                             : [Colors.transparent, Colors.transparent])),
                 child: Column(
                   children: <Widget>[
