@@ -103,7 +103,9 @@ class _StoneSearchState extends State<StoneSearch> {
       si3Selected = false,
       i1Selected = false,
       i2Selected = false,
-      i3Selected = false;
+      i3Selected = false,
+      i4Selected = false;
+      
 
   void updateClarity(
       bool flSelected1,
