@@ -376,49 +376,193 @@ class _StoneSearchState extends State<StoneSearch> {
   final GlobalKey<CutCategoryState> _cutKey = GlobalKey();
   final GlobalKey<PolishCategoryState> _polKey = GlobalKey();
   final GlobalKey<SymmetryCategoryState> _symmKey = GlobalKey();
-
+  bool is3EXSelected = false, is2VgSelected = false, is2ExSelected = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              // width: (MediaQuery.of(context).size.width - 40) / 2,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
+      bottomNavigationBar: Container(
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topLeft,
+                      colors: [Colors.grey[350], Colors.grey[600]]),
                 ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => StoneSearch(),
-                      transitionDuration: Duration.zero,
-                    ),
-                  );
-                },
-                child: Text('Reset'),
+                width: 80,
+                height: 35,
+                child: FlatButton(
+                  color: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => StoneSearch(),
+                        transitionDuration: Duration.zero,
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Reset',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              // width: (MediaQuery.of(context).size.width - 40) / 2,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                onPressed: searchStone,
-                child: Text('Search'),
+            Expanded(
+                child: Padding(
+              padding: EdgeInsets.all(5),
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.only(left: 3),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topLeft,
+                              colors: is3EXSelected
+                                  ? [Colors.blue[300], Colors.blue[900]]
+                                  : [Colors.transparent, Colors.transparent]),
+                        ),
+                        width: 60,
+                        height: 35,
+                        child: FlatButton(
+                            onPressed: () {
+                              setState(() {
+                                is3EXSelected = !is3EXSelected;
+                                _cutKey.currentState
+                                    .updateVal("EX", is3EXSelected);
+                                _polKey.currentState
+                                    .updateVal("EX", is3EXSelected);
+                                _symmKey.currentState
+                                    .updateVal("EX", is3EXSelected);
+                              });
+                            },
+                            child: Text(
+                              '3EX',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: is3EXSelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            )),
+                      )),
+                  Padding(
+                      padding: EdgeInsets.only(left: 2),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topLeft,
+                              colors: is2VgSelected
+                                  ? [Colors.blue[300], Colors.blue[900]]
+                                  : [Colors.transparent, Colors.transparent]),
+                        ),
+                        width: 60,
+                        height: 35,
+                        child: FlatButton(
+                            onPressed: () {
+                              setState(() {
+                                is2VgSelected = !is2VgSelected;
+                                _cutKey.currentState
+                                    .updateVal("EX", is2VgSelected);
+                                _polKey.currentState
+                                    .updateVal("EX", is2VgSelected);
+                                _symmKey.currentState
+                                    .updateVal("EX", is2VgSelected);
+                                _cutKey.currentState
+                                    .updateVal("VG", is2VgSelected);
+                                _polKey.currentState
+                                    .updateVal("VG", is2VgSelected);
+                                _symmKey.currentState
+                                    .updateVal("VG", is2VgSelected);
+                              });
+                            },
+                            child: Text('3VG+',
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: is2VgSelected
+                                        ? Colors.white
+                                        : Colors.black))),
+                      )),
+                  Padding(
+                      padding: EdgeInsets.only(left: 2),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topLeft,
+                              colors: is2ExSelected
+                                  ? [Colors.blue[300], Colors.blue[900]]
+                                  : [Colors.transparent, Colors.transparent]),
+                        ),
+                        width: 60,
+                        height: 35,
+                        child: FlatButton(
+                            onPressed: () {
+                              setState(() {
+                                is2ExSelected = !is2ExSelected;
+                                _cutKey.currentState
+                                    .updateVal("EX", is2ExSelected);
+                                _polKey.currentState
+                                    .updateVal("EX", is2ExSelected);
+                              });
+                            },
+                            child: Text('2EX',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: is2ExSelected
+                                        ? Colors.white
+                                        : Colors.black))),
+                      ))
+                ],
               ),
-            ),
-          )
-        ],
+            )),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topLeft,
+                      colors: [Colors.grey[350], Colors.grey[600]]),
+                ),
+                width: 80,
+                height: 35,
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  onPressed: searchStone,
+                  child: Text(
+                    'Search',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       appBar: AppBar(
         title: Text('Stone Search'),
@@ -430,27 +574,6 @@ class _StoneSearchState extends State<StoneSearch> {
             child: Container(
               child: Column(
                 children: <Widget>[
-                  // Stone ID/Cert No text box
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                    child: TextFormField(
-                      // style: TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            // borderSide: BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Stone ID / Cert No.',
-                          hintStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black)),
-                    ),
-                  ),
-
                   //Shapes option
                   Padding(
                     padding:
@@ -620,7 +743,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 30,
+                                height: 50,
                                 width: MediaQuery.of(context).size.width,
                                 child: ColourList(
                                   customFunction: getColours,
@@ -654,7 +777,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 30,
+                                height: 50,
                                 width: MediaQuery.of(context).size.width,
                                 child: CutCategory(
                                   customFunction: getSelectedCut,
@@ -689,7 +812,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 30,
+                                height: 50,
                                 // width: MediaQuery.of(context).size.width - 75,
                                 child: PolishCategory(
                                   customFunction: getSelectedPolish,
@@ -725,7 +848,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 30,
+                                height: 50,
                                 // width: MediaQuery.of(context).size.width - 100,
                                 child: SymmetryCategory(
                                   customFunction: getSelectedSymm,
@@ -761,7 +884,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 30,
+                                height: 50,
                                 // width: MediaQuery.of(context).size.width - 125,
                                 child: FuorescenceCategory(
                                   customFunction: getSelectedFluo,
@@ -796,7 +919,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 30,
+                                height: 50,
                                 // width: MediaQuery.of(context).size.width - 105,
                                 child: CertificateCategory(
                                   customFunction: getSelectedCerti,
@@ -808,185 +931,6 @@ class _StoneSearchState extends State<StoneSearch> {
                       )),
 
                   Divider(color: Colors.grey),
-                  //Luster Selection
-                  Padding(
-                      padding:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                      child: Container(
-                        // height: 30,
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              height: 30,
-                              // width: 50,
-                              child: Text(
-                                'Luster:',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.0,
-                                    color: Colors.black),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Container(
-                                height: 30,
-                                // width: MediaQuery.of(context).size.width - 75,
-                                child: LusterCategory(),
-                              ),
-                            )
-                          ],
-                        ),
-                      )),
-
-                  Divider(color: Colors.grey),
-                  //Shades Selection
-                  Padding(
-                      padding:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                      child: Container(
-                        // height: 30,
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              height: 30,
-                              // width: 55,
-                              child: Text(
-                                'Shades:',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.0,
-                                    color: Colors.black),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Container(
-                                height: 30,
-                                // width: MediaQuery.of(context).size.width - 80,
-                                child: ShadesCategory(),
-                              ),
-                            )
-                          ],
-                        ),
-                      )),
-                  Divider(color: Colors.grey),
-                  //HNA Selection
-                  Padding(
-                      padding:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                      child: Container(
-                        // height: 30,
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              height: 30,
-                              child: Text(
-                                'H&A:',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.0,
-                                    color: Colors.black),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Container(
-                                height: 30,
-                                // width: MediaQuery.of(context).size.width - 65,
-                                child: HNACategory(),
-                              ),
-                            )
-                          ],
-                        ),
-                      )),
-
-                  Divider(color: Colors.grey),
-                  //Black Inclusion
-                  Padding(
-                      padding:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: Column(
-                          children: <Widget>[
-                            Center(
-                              child: Container(
-                                height: 30,
-                                child: Text(
-                                  'Black Inclusion:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Container(
-                                height: 30,
-                                width: MediaQuery.of(context).size.width,
-                                child: BlackIncCategory(),
-                              ),
-                            )
-                          ],
-                        ),
-                      )),
-
-                  Divider(color: Colors.grey),
-                  //White Inclusion
-                  Padding(
-                      padding:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: Column(
-                          children: <Widget>[
-                            Center(
-                              child: Container(
-                                height: 30,
-                                child: Text(
-                                  'White Inclusion:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Container(
-                                height: 30,
-                                width: MediaQuery.of(context).size.width,
-                                child: WhiteIncCategory(),
-                              ),
-                            )
-                          ],
-                        ),
-                      )),
-
-                  Divider(color: Colors.grey),
-                  advSearchHidden ? Container() : AdvanceSearchOptions(),
-
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {
-                        advSearchHidden = !advSearchHidden;
-                        setState(() {});
-                      },
-                      child: Text(advSearchHidden
-                          ? 'Show Advanced Search Options'
-                          : 'Hide Advanced Search Options'),
-                    ),
-                  ),
                 ],
               ),
             ),

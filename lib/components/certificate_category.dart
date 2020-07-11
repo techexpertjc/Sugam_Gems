@@ -37,9 +37,10 @@ class _CertificateCategoryState extends State<CertificateCategory> {
         colourListWidget.add(Padding(
             padding: EdgeInsets.only(left: 5),
             child: Container(
+              width: 70,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                   gradient: LinearGradient(
                       begin: Alignment.bottomLeft,
                       end: Alignment.topLeft,
@@ -54,6 +55,7 @@ class _CertificateCategoryState extends State<CertificateCategory> {
                 child: Text(
                   element,
                   style: TextStyle(
+                      fontSize: 20,
                       color: selectedCertificate[element]
                           ? Colors.white
                           : Colors.black),
@@ -62,7 +64,7 @@ class _CertificateCategoryState extends State<CertificateCategory> {
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.black)),
               ),
             )));

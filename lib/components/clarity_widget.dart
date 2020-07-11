@@ -61,7 +61,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 30,
+                height: 50,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -69,10 +69,11 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 60,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -84,7 +85,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                             onPressed: () {
                               flSelected = !flSelected;
@@ -93,6 +94,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'FL',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color:
                                       flSelected ? Colors.white : Colors.black),
                             ),
@@ -104,10 +106,11 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 60,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -125,6 +128,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'IF',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color:
                                       ifSelected ? Colors.white : Colors.black),
                             ),
@@ -132,17 +136,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 80,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -160,6 +165,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VVS1',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color: vvs1Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -168,17 +174,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 80,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -196,6 +203,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VVS2',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color: vvs2Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -204,17 +212,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 70,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -232,6 +241,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VS1',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color: vs1Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -240,17 +250,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 70,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -268,6 +279,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VS2',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color: vs2Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -276,17 +288,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 70,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -304,6 +317,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'SI1',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color: si1Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -312,17 +326,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 70,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -340,6 +355,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'SI2',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color: si2Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -348,17 +364,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 70,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -376,6 +393,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'SI3',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color: si3Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -384,16 +402,17 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                       padding: EdgeInsets.only(left: 5),
                       child: Container(
+                        width: 60,
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
                             gradient: LinearGradient(
                                 begin: Alignment.bottomLeft,
                                 end: Alignment.topLeft,
@@ -411,6 +430,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                           child: Text(
                             'I1',
                             style: TextStyle(
+                                fontSize: 20,
                                 color:
                                     i1Selected ? Colors.white : Colors.black),
                           ),
@@ -418,7 +438,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                           //     ? Colors.indigo[800]
                           //     : Colors.transparent,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40),
+                              borderRadius: BorderRadius.circular(5),
                               side: BorderSide(color: Colors.black)),
                         ),
                       ),
@@ -426,10 +446,11 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 60,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -447,6 +468,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'I2',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color:
                                       i2Selected ? Colors.white : Colors.black),
                             ),
@@ -454,17 +476,18 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         )),
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
+                          width: 60,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                                  BorderRadius.all(Radius.circular(5)),
                               gradient: LinearGradient(
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topLeft,
@@ -482,6 +505,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'I3',
                               style: TextStyle(
+                                  fontSize: 20,
                                   color:
                                       i3Selected ? Colors.white : Colors.black),
                             ),
@@ -489,7 +513,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     ? Colors.indigo[800]
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.black)),
                           ),
                         ))

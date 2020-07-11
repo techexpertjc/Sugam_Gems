@@ -36,7 +36,7 @@ class _BlackIncCategoryState extends State<BlackIncCategory> {
             child: Container(
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                   gradient: LinearGradient(
                       begin: Alignment.bottomLeft,
                       end: Alignment.topLeft,
@@ -59,7 +59,7 @@ class _BlackIncCategoryState extends State<BlackIncCategory> {
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.black)),
               ),
             )));
@@ -69,7 +69,7 @@ class _BlackIncCategoryState extends State<BlackIncCategory> {
             child: Container(
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                   gradient: LinearGradient(
                       begin: Alignment.bottomLeft,
                       end: Alignment.topLeft,

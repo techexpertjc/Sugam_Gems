@@ -49,9 +49,10 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
         colourListWidget.add(Padding(
             padding: EdgeInsets.only(left: 5),
             child: Container(
+              width: 60,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                   gradient: LinearGradient(
                       begin: Alignment.bottomLeft,
                       end: Alignment.topLeft,
@@ -66,6 +67,7 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                 child: Text(
                   element,
                   style: TextStyle(
+                      fontSize: 20,
                       color: selectedSymmetry[element]
                           ? Colors.white
                           : Colors.black),
@@ -74,7 +76,7 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.black)),
               ),
             )));
