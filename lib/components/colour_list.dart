@@ -51,9 +51,11 @@ class _ColourListState extends State<ColourList> {
         colourListWidget.add(Padding(
             padding: EdgeInsets.only(left: 5),
             child: Container(
+              // height: 40,
+              width: 50,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                   gradient: LinearGradient(
                       begin: Alignment.bottomLeft,
                       end: Alignment.topLeft,
@@ -68,6 +70,7 @@ class _ColourListState extends State<ColourList> {
                 child: Text(
                   element,
                   style: TextStyle(
+                      fontSize: 20,
                       color: selectedColour[element]
                           ? Colors.white
                           : Colors.black),
@@ -76,7 +79,7 @@ class _ColourListState extends State<ColourList> {
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.black)),
               ),
             )));
@@ -84,9 +87,11 @@ class _ColourListState extends State<ColourList> {
         colourListWidget.add(Padding(
             padding: EdgeInsets.only(left: 5),
             child: Container(
+              height: 50,
+              width: 60,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                   gradient: LinearGradient(
                       begin: Alignment.bottomLeft,
                       end: Alignment.topLeft,
@@ -104,6 +109,7 @@ class _ColourListState extends State<ColourList> {
                 child: Text(
                   element,
                   style: TextStyle(
+                      fontSize: 20,
                       color: selectedColour[element]
                           ? Colors.white
                           : Colors.black),
@@ -112,7 +118,7 @@ class _ColourListState extends State<ColourList> {
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.black)),
               ),
             )));

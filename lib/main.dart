@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:sugam_gems/screens/about_us.dart';
 import 'package:sugam_gems/screens/search_results.dart';
 import 'package:sugam_gems/screens/search_stone.dart';
 import 'package:sugam_gems/screens/home_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  FlutterDownloader.initialize();
+  runApp(MyApp());
+}
 
 const int _blackPrimaryValue = 0xFF222222;
 const MaterialColor primaryBlack = MaterialColor(
