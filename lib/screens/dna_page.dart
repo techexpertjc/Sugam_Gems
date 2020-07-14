@@ -53,6 +53,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
   Widget pdfPage;
   void myInitFunc() async {
     try {
+      myController.addListener(() {
+        setState(() {});
+      });
       dwnloadUrl = data["CERTI"];
       myVideoController = VideoPlayerController.network(data["VIDEO"]);
       myVideoController.addListener(() {
@@ -96,7 +99,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       return Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-          title: Text('DNA Page'),
+          title: Text('Diamond Details'),
         ),
         body: Container(
           child: SingleChildScrollView(
@@ -118,7 +121,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                   BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             myController.animateTo(0);
+                            myController.index = 0;
                             dwnloadUrl = data["CERTI"];
+                            setState(() {});
                           },
                           child: Row(
                             children: <Widget>[
@@ -144,7 +149,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                   BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             myController.animateTo(1);
+                            myController.index = 1;
                             dwnloadUrl = data["VIDEO"];
+                            setState(() {});
                           },
                           child: Row(
                             children: <Widget>[
@@ -171,6 +178,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                           onPressed: () {
                             dwnloadUrl = data["IMG"];
                             myController.animateTo(2);
+
+                            myController.index = 2;
+                            setState(() {});
                           },
                           child: Row(
                             children: <Widget>[

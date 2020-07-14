@@ -36,7 +36,7 @@ class _SearchResultsState extends State<SearchResults> {
 
   void getSearchResults() {
     dataLoaded = false;
-    int strt = pageCnt * 20 - 19, end = pageCnt * 20;
+    int strt = pageCnt * 10 - 9, end = pageCnt * 10;
 
     requestData["Start"] = strt.toString();
     requestData["End"] = end.toString();
@@ -74,7 +74,7 @@ class _SearchResultsState extends State<SearchResults> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   void loadPageResults() {
-    int strt = pageCnt * 20 - 19, end = pageCnt * 20;
+    int strt = pageCnt * 10 - 9, end = pageCnt * 10;
     if (strt <= totalrecords && pageCnt >= 1) {
       if (end > totalrecords) end = totalrecords;
       requestData["Start"] = strt.toString();
@@ -121,234 +121,249 @@ class _SearchResultsState extends State<SearchResults> {
           padding: EdgeInsets.all(5),
           child: Row(
             children: <Widget>[
-              Container(
-                width: 20,
-                child: Checkbox(
-                    // tristate: false,
-                    value: isChecked[i],
-                    onChanged: (bool val) {
-                      setState(() {
-                        isChecked[i] = val;
-                        if (val) {
-                          selectStoneNo++;
-                          discAdded
-                              .add(double.parse(searchResultList[i]["DISC"]));
-                          selectCarat = selectCarat +
-                              double.parse(searchResultList[i]["CRTS"]);
-                          totalAmnt = totalAmnt +
-                              double.parse(searchResultList[i]["TOTAL"]);
-                        } else {
-                          selectStoneNo--;
-                          discAdded.remove(
-                              double.parse(searchResultList[i]["DISC"]));
-                          selectCarat = selectCarat -
-                              double.parse(searchResultList[i]["CRTS"]);
-                          totalAmnt = totalAmnt -
-                              double.parse(searchResultList[i]["TOTAL"]);
-                        }
-                        var temp = 0.0;
-                        discAdded.forEach((element) {
-                          temp = temp + element;
+              Expanded(
+                flex: 1,
+                child: Container(
+                  width: 20,
+                  child: Checkbox(
+                      // tristate: false,
+                      value: isChecked[i],
+                      onChanged: (bool val) {
+                        setState(() {
+                          isChecked[i] = val;
+                          if (val) {
+                            selectStoneNo++;
+                            discAdded
+                                .add(double.parse(searchResultList[i]["DISC"]));
+                            selectCarat = selectCarat +
+                                double.parse(searchResultList[i]["CRTS"]);
+                            totalAmnt = totalAmnt +
+                                double.parse(searchResultList[i]["TOTAL"]);
+                          } else {
+                            selectStoneNo--;
+                            discAdded.remove(
+                                double.parse(searchResultList[i]["DISC"]));
+                            selectCarat = selectCarat -
+                                double.parse(searchResultList[i]["CRTS"]);
+                            totalAmnt = totalAmnt -
+                                double.parse(searchResultList[i]["TOTAL"]);
+                          }
+                          var temp = 0.0;
+                          discAdded.forEach((element) {
+                            temp = temp + element;
+                          });
+                          avgDisc = temp / discAdded.length;
+                          perCarat = totalAmnt / selectCarat;
+                          if (discAdded.length == 0) {
+                            avgDisc = 0.00;
+                            selectCarat = 0.00;
+                            totalAmnt = 0.00;
+                            perCarat = 0.00;
+                          }
                         });
-                        avgDisc = temp / discAdded.length;
-                        perCarat = totalAmnt / selectCarat;
-                        if (discAdded.length == 0) {
-                          avgDisc = 0.00;
-                          selectCarat = 0.00;
-                          totalAmnt = 0.00;
-                          perCarat = 0.00;
-                        }
-                      });
-                    }),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        searchResultList[i]["SHAPE"] +
-                            ', ' +
-                            searchResultList[i]["CRTS"] +
-                            ' ct, ' +
-                            searchResultList[i]["COL"] +
-                            ', ' +
-                            searchResultList[i]["PUR"] +
-                            ', ' +
-                            searchResultList[i]["LAB"],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
-                      ),
-                    ),
-                    Container(
-                      width: 250,
-                      height: 100,
-                      padding: EdgeInsets.only(top: 10),
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            height: 30,
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  width: 70,
-                                  child: RichText(
-                                    text: TextSpan(children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Cut: ',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                          text: searchResultList[i]["CUT"],
-                                          style: TextStyle(color: Colors.black))
-                                    ]),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: RichText(
-                                    text: TextSpan(children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Fluo: ',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                          text: searchResultList[i]["FLUO"],
-                                          style: TextStyle(color: Colors.black))
-                                    ]),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: 30,
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  width: 70,
-                                  child: RichText(
-                                    text: TextSpan(children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Pol: ',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                          text: searchResultList[i]["POL"],
-                                          style: TextStyle(color: Colors.black))
-                                    ]),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: RichText(
-                                    text: TextSpan(children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Meas: ',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                          text: searchResultList[i]["M1"] +
-                                              'X' +
-                                              searchResultList[i]["M2"] +
-                                              'X' +
-                                              searchResultList[i]["M3"],
-                                          style: TextStyle(color: Colors.black))
-                                    ]),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: 30,
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  width: 70,
-                                  child: RichText(
-                                    text: TextSpan(children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Sym: ',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                          text: searchResultList[i]["SYM"],
-                                          style: TextStyle(color: Colors.black))
-                                    ]),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: RichText(
-                                    text: TextSpan(children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Certi: ',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                          text: searchResultList[i]["CERTNO"],
-                                          style: TextStyle(color: Colors.black))
-                                    ]),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                      }),
                 ),
               ),
               Expanded(
-                  child: Container(
-                // width: 100,
-                // color: Colors.black,
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      // color: Colors.black,
-                      child: Text(
-                        searchResultList[i]["STONE_ID"],
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                flex: 11,
+                child: Container(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        child: Text(
+                          searchResultList[i]["SHAPE"] +
+                              ', ' +
+                              searchResultList[i]["CRTS"] +
+                              ' ct, ' +
+                              searchResultList[i]["COL"] +
+                              ', ' +
+                              searchResultList[i]["PUR"] +
+                              ', ' +
+                              searchResultList[i]["LAB"],
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17),
+                        ),
                       ),
-                    ),
-                    Container(
-                      color: Colors.blue[200],
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10.0, right: 10.0, top: 10, bottom: 20),
-                        child: Column(children: <Widget>[
-                          Text('Total'),
-                          Text(
-                            searchResultList[i]["TOTAL"],
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text('Discount'),
-                          Text(searchResultList[i]["DISC"],
-                              style: TextStyle(fontWeight: FontWeight.bold))
-                        ]),
+                      Container(
+                        // width: 250,
+                        height: 100,
+                        padding: EdgeInsets.only(top: 10),
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              height: 30,
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: 70,
+                                    child: RichText(
+                                      text: TextSpan(children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Cut: ',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: searchResultList[i]["CUT"],
+                                            style:
+                                                TextStyle(color: Colors.black))
+                                      ]),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: RichText(
+                                      text: TextSpan(children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Fluo: ',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: searchResultList[i]["FLUO"],
+                                            style:
+                                                TextStyle(color: Colors.black))
+                                      ]),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: 70,
+                                    child: RichText(
+                                      text: TextSpan(children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Pol: ',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: searchResultList[i]["POL"],
+                                            style:
+                                                TextStyle(color: Colors.black))
+                                      ]),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: RichText(
+                                      text: TextSpan(children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Meas: ',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: searchResultList[i]["M1"] +
+                                                'X' +
+                                                searchResultList[i]["M2"] +
+                                                'X' +
+                                                searchResultList[i]["M3"],
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12))
+                                      ]),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: 70,
+                                    child: RichText(
+                                      text: TextSpan(children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Sym: ',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: searchResultList[i]["SYM"],
+                                            style:
+                                                TextStyle(color: Colors.black))
+                                      ]),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: RichText(
+                                      text: TextSpan(children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Certi: ',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: searchResultList[i]["CERTNO"],
+                                            style:
+                                                TextStyle(color: Colors.black))
+                                      ]),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ))
+              ),
+              Expanded(
+                  flex: 6,
+                  child: Container(
+                    // width: 100,
+                    // color: Colors.black,
+                    padding: EdgeInsets.only(left: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          // color: Colors.black,
+                          child: Text(
+                            searchResultList[i]["STONE_ID"],
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
+                        Container(
+                          width: (12 * 100 / 36) * 10,
+                          color: Colors.blue[200],
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10.0, right: 10.0, top: 10, bottom: 20),
+                            child: Column(children: <Widget>[
+                              Text('Total'),
+                              Text(
+                                searchResultList[i]["TOTAL"],
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text('Discount'),
+                              Text(searchResultList[i]["DISC"],
+                                  style: TextStyle(fontWeight: FontWeight.bold))
+                            ]),
+                          ),
+                        )
+                      ],
+                    ),
+                  ))
             ],
           ),
         ),
@@ -368,119 +383,159 @@ class _SearchResultsState extends State<SearchResults> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 10.0, right: 10),
-          child: Container(
-            height: 50,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 0.0),
-                  child: Container(
-                    width: 1,
-                    color: Colors.grey,
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(border: Border(top: BorderSide())),
-                  padding: EdgeInsets.only(left: 10, top: 3, right: 5),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Text('Stones', style: TextStyle(fontSize: 17)),
-                        padding: EdgeInsets.only(bottom: 5),
-                      ),
-                      Container(child: Text(selectStoneNo.toString()))
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 1,
-                  color: Colors.grey,
-                ),
-                Container(
-                  decoration: BoxDecoration(border: Border(top: BorderSide())),
-                  padding: EdgeInsets.only(left: 10, top: 3, right: 5),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Text('Carat', style: TextStyle(fontSize: 17)),
-                        padding: EdgeInsets.only(bottom: 5),
-                      ),
-                      Container(child: Text(selectCarat.toStringAsFixed(2)))
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 1,
-                  color: Colors.grey,
-                ),
-                Container(
-                  decoration: BoxDecoration(border: Border(top: BorderSide())),
-                  padding: EdgeInsets.only(left: 10, top: 3, right: 5),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Text('Avg. Discount',
-                            style: TextStyle(fontSize: 17)),
-                        padding: EdgeInsets.only(bottom: 5),
-                      ),
-                      Container(child: Text(avgDisc.toStringAsFixed(2)))
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 1,
-                  color: Colors.grey,
-                ),
-                Container(
-                  decoration: BoxDecoration(border: Border(top: BorderSide())),
-                  padding: EdgeInsets.only(left: 10, top: 3, right: 5),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Text('Per Carat \$',
-                            style: TextStyle(fontSize: 17)),
-                        padding: EdgeInsets.only(bottom: 5),
-                      ),
-                      Container(child: Text(perCarat.toStringAsFixed(2)))
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 1,
-                  color: Colors.grey,
-                ),
-                Container(
-                  decoration: BoxDecoration(border: Border(top: BorderSide())),
-                  padding: EdgeInsets.only(left: 10, top: 3, right: 5),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          'Total \$',
-                          style: TextStyle(fontSize: 17),
-                        ),
-                        padding: EdgeInsets.only(bottom: 5),
-                      ),
-                      Container(child: Text(totalAmnt.toString()))
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 1,
-                  color: Colors.grey,
-                ),
-              ],
-            ),
-          ),
-        ),
         key: scaffoldKey,
         appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(70),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 1.0, right: 1),
+              child: Container(
+                color: Colors.blue[200],
+                height: 65,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 60,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)),
+                        padding: EdgeInsets.only(left: 0, top: 0, right: 0),
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(color: Colors.grey)),
+                                  color: Colors.blue[200],
+                                ),
+                                child: Text('Stones',
+                                    style: TextStyle(fontSize: 15)),
+                                padding: EdgeInsets.all(7),
+                              ),
+                            ),
+                            Container(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text(selectStoneNo.toString()))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 60,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)),
+                        // padding: EdgeInsets.only(left: 10, top: 3, right: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.grey)),
+                                color: Colors.blue[200],
+                              ),
+                              child:
+                                  Text('Carat', style: TextStyle(fontSize: 15)),
+                              padding: EdgeInsets.all(7),
+                            ),
+                            Container(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text(selectCarat.toStringAsFixed(2)))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 80,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)),
+                        // padding: EdgeInsets.only(left: 10, top: 3, right: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.grey)),
+                                color: Colors.blue[200],
+                              ),
+                              child: Text('Avg. Disc',
+                                  style: TextStyle(fontSize: 15)),
+                              padding: EdgeInsets.all(7),
+                            ),
+                            Container(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text(avgDisc.toStringAsFixed(2)))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 80,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)),
+                        // padding: EdgeInsets.only(left: 10, top: 3, right: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.grey)),
+                                color: Colors.blue[200],
+                              ),
+                              child: Text('Per Carat \$',
+                                  style: TextStyle(fontSize: 15)),
+                              padding: EdgeInsets.all(7),
+                            ),
+                            Container(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text(perCarat.toStringAsFixed(2)))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 80,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)),
+                        // padding: EdgeInsets.only(left: 10, top: 3, right: 5),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              // width: 120,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.grey)),
+                                color: Colors.blue[200],
+                              ),
+                              child: Center(
+                                child: Text('Total \$',
+                                    style: TextStyle(fontSize: 15)),
+                              ),
+                              padding: EdgeInsets.all(7),
+                            ),
+                            Container(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text(totalAmnt.toString()))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           title: Text('Search Results'),
           actions: <Widget>[
-          IconButton(icon: Icon(Icons.home), onPressed: () => Navigator.of(context).pushNamed('/home'))
-        ],
+            IconButton(
+                icon: Icon(Icons.home),
+                onPressed: () =>
+                    Navigator.popUntil(context, ModalRoute.withName('/home')))
+          ],
         ),
         body: dataLoaded
             ? Container(

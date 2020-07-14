@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:sugam_gems/screens/about_us.dart';
+import 'package:sugam_gems/screens/contact_us.dart';
+import 'package:sugam_gems/screens/gallery.dart';
 import 'package:sugam_gems/screens/search_results.dart';
 import 'package:sugam_gems/screens/search_stone.dart';
 import 'package:sugam_gems/screens/home_screen.dart';
+import 'package:sugam_gems/screens/splashScreen.dart';
 
 void main() {
   FlutterDownloader.initialize();
@@ -31,7 +34,9 @@ var routes = <String, WidgetBuilder>{
   "/home": (BuildContext context) => HomeScreen(),
   "/searchPage": (BuildContext context) => StoneSearch(),
   "/searchResults": (BuildContext context) => SearchResults(),
-  "/aboutUs": (BuildContext context) => AboutUs()
+  "/aboutUs": (BuildContext context) => AboutUs(),
+  "/gallery": (BuildContext context) => MyGallery(),
+  "/contact": (BuildContext context) => ContactUs()
 };
 
 class MyApp extends StatelessWidget {
@@ -52,7 +57,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: primaryBlack,
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
       routes: routes,
     );
   }

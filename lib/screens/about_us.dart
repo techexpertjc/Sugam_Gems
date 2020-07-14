@@ -23,7 +23,10 @@ class _AboutUsState extends State<AboutUs> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         title: Text('About Us'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.home), onPressed: () => Navigator.of(context).pushNamed('/home'))
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () =>
+                  Navigator.popUntil(context, ModalRoute.withName('/home')))
         ],
       ),
       body: Container(

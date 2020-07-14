@@ -28,17 +28,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context) {
-    precacheImage(AssetImage('images/home_carousel/mob01.jpg'), context);
-    precacheImage(AssetImage('images/home_carousel/mob02.jpg'), context);
-    precacheImage(AssetImage('images/home_carousel/mob03.jpg'), context);
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-              color: Colors.grey[100],
-            ),
+            // image: DecorationImage(
+            //     image: AssetImage('images/BackImg.png'),
+            //     fit: BoxFit.fitHeight,
+            //     colorFilter:
+            //         ColorFilter.mode(Color(0xAA222222), BlendMode.srcATop))
+            color: Colors.grey[100],
+          ),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -46,12 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.all(20),
                   height: 250,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage('images/img9.jpg'),
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      primaryBlack.shade500, BlendMode.luminosity))
-                  ),
+                      image: DecorationImage(
+                          image: AssetImage('images/img9.jpg'),
+                          fit: BoxFit.cover,
+                          colorFilter: ColorFilter.mode(
+                              primaryBlack.shade500, BlendMode.luminosity))),
                   child: Image.asset('images/LogoNew.png'),
                 ),
                 Padding(
@@ -81,11 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/gallary");
+                      Navigator.of(context).pushNamed("/gallery");
                     },
                     elevation: 5.0,
                     // fillColor: Colors.white,
@@ -102,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Padding(
                               padding: EdgeInsets.all(5),
-                              child: Text('Gallary'))
+                              child: Text('Gallery'))
                         ],
                       ),
                     ),
@@ -138,7 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/contact');
+                    },
                     elevation: 5.0,
                     // fillColor: Colors.white,
                     shape: RoundedRectangleBorder(

@@ -10,7 +10,7 @@ class CallService {
       headers: {"Content-Type": "application/json"},
       body: data,
     );
-    // print(response.body + data);
+    print(response.body + data + response.statusCode.toString());
     return response.body;
   }
 }

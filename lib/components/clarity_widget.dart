@@ -53,9 +53,11 @@ class _ClarityChoicesState extends State<ClarityChoices> {
             Container(
                 height: 30,
                 child: Text(
-                  'Clarity:',
+                  'Clarity',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
                 )),
             Padding(
               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -86,7 +88,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                             onPressed: () {
                               flSelected = !flSelected;
                               setState(() {});
@@ -94,7 +96,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'FL',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color:
                                       flSelected ? Colors.white : Colors.black),
                             ),
@@ -128,7 +130,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'IF',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color:
                                       ifSelected ? Colors.white : Colors.black),
                             ),
@@ -137,7 +139,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -165,7 +167,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VVS1',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: vvs1Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -175,7 +177,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -203,7 +205,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VVS2',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: vvs2Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -213,7 +215,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -241,7 +243,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VS1',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: vs1Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -251,7 +253,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -279,7 +281,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'VS2',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: vs2Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -289,7 +291,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -317,7 +319,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'SI1',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: si1Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -327,7 +329,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -355,7 +357,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'SI2',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: si2Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -365,7 +367,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -393,7 +395,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'SI3',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: si3Selected
                                       ? Colors.white
                                       : Colors.black),
@@ -403,7 +405,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -430,7 +432,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                           child: Text(
                             'I1',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 15,
                                 color:
                                     i1Selected ? Colors.white : Colors.black),
                           ),
@@ -439,7 +441,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                           //     : Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
-                              side: BorderSide(color: Colors.black)),
+                              side: BorderSide(color: Colors.grey)),
                         ),
                       ),
                     ),
@@ -468,7 +470,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'I2',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color:
                                       i2Selected ? Colors.white : Colors.black),
                             ),
@@ -477,7 +479,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         )),
                     Padding(
@@ -505,7 +507,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             child: Text(
                               'I3',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color:
                                       i3Selected ? Colors.white : Colors.black),
                             ),
@@ -514,7 +516,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             //     : Colors.transparent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)),
+                                side: BorderSide(color: Colors.grey)),
                           ),
                         ))
                   ],

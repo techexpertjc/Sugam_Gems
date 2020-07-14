@@ -52,7 +52,7 @@ class _ColourListState extends State<ColourList> {
             padding: EdgeInsets.only(left: 5),
             child: Container(
               // height: 40,
-              width: 50,
+              width: element.toLowerCase() == 'fancy' ? 80 : 50,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -70,7 +70,8 @@ class _ColourListState extends State<ColourList> {
                 child: Text(
                   element,
                   style: TextStyle(
-                      fontSize: 20,
+                      // fontFamily: 'ClearSansLight',
+                      fontSize: 15,
                       color: selectedColour[element]
                           ? Colors.white
                           : Colors.black),
@@ -80,7 +81,7 @@ class _ColourListState extends State<ColourList> {
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
-                    side: BorderSide(color: Colors.black)),
+                    side: BorderSide(color: Colors.grey)),
               ),
             )));
       } else {
@@ -109,7 +110,7 @@ class _ColourListState extends State<ColourList> {
                 child: Text(
                   element,
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                       color: selectedColour[element]
                           ? Colors.white
                           : Colors.black),
@@ -119,7 +120,7 @@ class _ColourListState extends State<ColourList> {
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
-                    side: BorderSide(color: Colors.black)),
+                    side: BorderSide(color: Colors.grey)),
               ),
             )));
       }

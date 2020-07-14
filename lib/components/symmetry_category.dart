@@ -67,7 +67,7 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                 child: Text(
                   element,
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                       color: selectedSymmetry[element]
                           ? Colors.white
                           : Colors.black),
@@ -77,7 +77,7 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
-                    side: BorderSide(color: Colors.black)),
+                    side: BorderSide(color: Colors.grey)),
               ),
             )));
       } else {
