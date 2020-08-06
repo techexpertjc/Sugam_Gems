@@ -44,6 +44,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
     myVideoController.dispose();
   }
 
+  bool videoLoaded = true;
   Widget noPreview = Center(
     child: Container(
       child: Text('No Preview Available'),
@@ -59,6 +60,10 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       dwnloadUrl = data["CERTI"];
       myVideoController = VideoPlayerController.network(data["VIDEO"]);
       myVideoController.addListener(() {
+        if (myVideoController.value.hasError) {
+          videoLoaded = false;
+        }
+
         setState(() {});
         // myVideoController.setLooping(true);
       });
@@ -199,7 +204,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                       ]),
                 ),
                 Container(
-                  height: 300,
+                  height: 400,
                   child: TabBarView(controller: myController, children: [
                     Container(
                       padding: EdgeInsets.all(10),
@@ -214,24 +219,26 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                     ),
                     AspectRatio(
                       aspectRatio: myVideoController.value.aspectRatio,
-                      child: Container(
-                        child: Stack(
-                            alignment: Alignment.bottomCenter,
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                child: VideoPlayer(myVideoController),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                child: PlayPauseOverlay(
-                                  controller: myVideoController,
-                                ),
-                              ),
-                              VideoProgressIndicator(myVideoController,
-                                  allowScrubbing: true),
-                            ]),
-                      ),
+                      child: videoLoaded
+                          ? Container(
+                              child: Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      child: VideoPlayer(myVideoController),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      child: PlayPauseOverlay(
+                                        controller: myVideoController,
+                                      ),
+                                    ),
+                                    VideoProgressIndicator(myVideoController,
+                                        allowScrubbing: true),
+                                  ]),
+                            )
+                          : noPreview,
                     ),
                     FadeInImage(
                       imageErrorBuilder: (context, Obj, stackTrc) {
@@ -325,7 +332,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 )),
                             Expanded(
                               child: Container(
-                                  padding: EdgeInsets.only(left: 20),
+                                  padding: EdgeInsets.only(left: 10),
                                   // width: 70,
                                   child: Text(
                                     data["DISC"],
@@ -387,7 +394,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 )),
                             Expanded(
                               child: Container(
-                                  padding: EdgeInsets.only(left: 20),
+                                  padding: EdgeInsets.only(left: 10),
                                   // width: 70,
                                   child: Text(
                                     data["TOTAL"],

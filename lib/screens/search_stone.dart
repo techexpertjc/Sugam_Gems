@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:sugam_gems/components/certificate_category.dart';
 import 'package:sugam_gems/components/clarity_widget.dart';
@@ -277,10 +280,16 @@ class _StoneSearchState extends State<StoneSearch> {
       colourList = colourList.substring(1);
     print(colourList);
 
+    String caratFrom = "", caratTo = "";
+    if (carats == null || carats.length == 0 || carats == "") {
+      caratFrom = fromCaratCntrlr.text;
+      caratTo = toCaratCntrlr.text;
+    }
+
     var data = Map<String, String>();
     data["Shape"] = shape;
-    data["CtsFrom"] = "";
-    data["CtsTo"] = "";
+    data["CtsFrom"] = caratFrom;
+    data["CtsTo"] = caratTo;
     data["Clarity"] = clarity;
     data["Color"] = colourList;
     data["Cut"] = cutList;
@@ -313,12 +322,23 @@ class _StoneSearchState extends State<StoneSearch> {
     //   '"Start"': '"0"',
     //   '"End"': '"10"'
     // };
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SearchResults(
-                  reqData: data,
-                )));
+
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SearchResults(
+                      reqData: data,
+                    )));
+      }
+    } on SocketException catch (_) {
+      scaffoldKey.currentState.showSnackBar(SnackBar(
+          content: Text('Please connect the device to active Internet')));
+    }
+
     // print(res);
     // Navigator.of(context).pushNamed('/searchResults');
   }
@@ -336,125 +356,6 @@ class _StoneSearchState extends State<StoneSearch> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-                child: Padding(
-              padding: EdgeInsets.all(5),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.only(left: 3),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            gradient: LinearGradient(
-                                begin: Alignment.bottomLeft,
-                                end: Alignment.topLeft,
-                                colors: is3EXSelected
-                                    ? [Colors.blue[300], Colors.blue[900]]
-                                    : [Colors.white, Colors.white]),
-                          ),
-                          width: 50,
-                          height: 35,
-                          child: FlatButton(
-                              onPressed: () {
-                                setState(() {
-                                  is3EXSelected = !is3EXSelected;
-                                  _cutKey.currentState
-                                      .updateVal("EX", is3EXSelected);
-                                  _polKey.currentState
-                                      .updateVal("EX", is3EXSelected);
-                                  _symmKey.currentState
-                                      .updateVal("EX", is3EXSelected);
-                                });
-                              },
-                              child: Text(
-                                '3EX',
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: is3EXSelected
-                                        ? Colors.white
-                                        : Colors.black),
-                              )),
-                        )),
-                    Padding(
-                        padding: EdgeInsets.only(left: 2),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            gradient: LinearGradient(
-                                begin: Alignment.bottomLeft,
-                                end: Alignment.topLeft,
-                                colors: is2VgSelected
-                                    ? [Colors.blue[300], Colors.blue[900]]
-                                    : [Colors.white, Colors.white]),
-                          ),
-                          width: 60,
-                          height: 35,
-                          child: FlatButton(
-                              onPressed: () {
-                                setState(() {
-                                  is2VgSelected = !is2VgSelected;
-                                  _cutKey.currentState
-                                      .updateVal("EX", is2VgSelected);
-                                  _polKey.currentState
-                                      .updateVal("EX", is2VgSelected);
-                                  _symmKey.currentState
-                                      .updateVal("EX", is2VgSelected);
-                                  _cutKey.currentState
-                                      .updateVal("VG", is2VgSelected);
-                                  _polKey.currentState
-                                      .updateVal("VG", is2VgSelected);
-                                  _symmKey.currentState
-                                      .updateVal("VG", is2VgSelected);
-                                });
-                              },
-                              child: Text('3VG+',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: is2VgSelected
-                                          ? Colors.white
-                                          : Colors.black))),
-                        )),
-                    Padding(
-                        padding: EdgeInsets.only(left: 2),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            gradient: LinearGradient(
-                                begin: Alignment.bottomLeft,
-                                end: Alignment.topLeft,
-                                colors: is2ExSelected
-                                    ? [Colors.blue[300], Colors.blue[900]]
-                                    : [Colors.white, Colors.white]),
-                          ),
-                          width: 50,
-                          height: 35,
-                          child: FlatButton(
-                              onPressed: () {
-                                setState(() {
-                                  is2ExSelected = !is2ExSelected;
-                                  _cutKey.currentState
-                                      .updateVal("EX", is2ExSelected);
-                                  _polKey.currentState
-                                      .updateVal("EX", is2ExSelected);
-                                });
-                              },
-                              child: Text('2EX',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: is2ExSelected
-                                          ? Colors.white
-                                          : Colors.black))),
-                        )),
-                  ],
-                ),
-              ),
-            )),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Container(
@@ -587,13 +488,20 @@ class _StoneSearchState extends State<StoneSearch> {
                                 height: 35.0,
                                 width: 70.0,
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black)),
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(7))),
                                 child: Container(
                                   padding: EdgeInsets.only(left: 10),
                                   child: TextFormField(
-                                    style: TextStyle(color: Colors.black),
+                                    style: TextStyle(color: Colors.grey[700]),
                                     controller: fromCaratCntrlr,
-                                    keyboardType: TextInputType.number,
+                                    inputFormatters: [
+                                      NumberTextInputFormatter(decimalRange: 2)
+                                    ],
+                                    keyboardType:
+                                        TextInputType.numberWithOptions(
+                                            decimal: true),
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'From',
@@ -610,13 +518,21 @@ class _StoneSearchState extends State<StoneSearch> {
                                   height: 35.0,
                                   width: 70.0,
                                   decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)),
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(7))),
                                   child: Container(
                                     padding: EdgeInsets.only(left: 10),
                                     child: TextFormField(
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: Colors.grey[700]),
                                       controller: toCaratCntrlr,
-                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        NumberTextInputFormatter(
+                                            decimalRange: 2)
+                                      ],
+                                      keyboardType:
+                                          TextInputType.numberWithOptions(
+                                              decimal: true),
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText: 'To',
@@ -675,11 +591,14 @@ class _StoneSearchState extends State<StoneSearch> {
                                       // width: 100.0,
                                       decoration: BoxDecoration(
                                           border:
-                                              Border.all(color: Colors.black)),
+                                              Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(7))),
                                       child: TextFormField(
                                         textAlignVertical:
                                             TextAlignVertical.center,
-                                        style: TextStyle(color: Colors.black),
+                                        style:
+                                            TextStyle(color: Colors.grey[700]),
                                         controller: CaratValueCntrlr,
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
@@ -692,19 +611,16 @@ class _StoneSearchState extends State<StoneSearch> {
                               ),
                               Container(
                                 width: 50,
-                                child: _caratList.length > 0
-                                    ? RawMaterialButton(
-                                        shape: CircleBorder(
-                                            side:
-                                                BorderSide(color: Colors.grey)),
-                                        child: Icon(Icons.close),
-                                        onPressed: () {
-                                          setState(() {
-                                            _caratList.clear();
-                                            CaratValueCntrlr.text = '';
-                                          });
-                                        })
-                                    : Container(),
+                                child: RawMaterialButton(
+                                    shape: CircleBorder(
+                                        side: BorderSide(color: Colors.grey)),
+                                    child: Icon(Icons.close),
+                                    onPressed: () {
+                                      setState(() {
+                                        _caratList.clear();
+                                        CaratValueCntrlr.text = '';
+                                      });
+                                    }),
                               )
                             ],
                           ),
@@ -783,7 +699,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 50,
+                                height: 40,
                                 width: MediaQuery.of(context).size.width,
                                 child: ColourList(
                                   customFunction: getColours,
@@ -793,6 +709,139 @@ class _StoneSearchState extends State<StoneSearch> {
                           ],
                         ),
                       )),
+
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 30),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              'Finishing: ',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(left: 3),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  shape: BoxShape.rectangle,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.bottomLeft,
+                                      end: Alignment.topLeft,
+                                      colors: is3EXSelected
+                                          ? [Colors.blue[300], Colors.blue[900]]
+                                          : [Colors.white, Colors.white]),
+                                ),
+                                width: 60,
+                                height: 35,
+                                child: FlatButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        is3EXSelected = !is3EXSelected;
+                                        _cutKey.currentState
+                                            .updateVal("EX", is3EXSelected);
+                                        _polKey.currentState
+                                            .updateVal("EX", is3EXSelected);
+                                        _symmKey.currentState
+                                            .updateVal("EX", is3EXSelected);
+                                      });
+                                    },
+                                    child: Text(
+                                      '3EX',
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: is3EXSelected
+                                              ? Colors.white
+                                              : Colors.black),
+                                    )),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  shape: BoxShape.rectangle,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.bottomLeft,
+                                      end: Alignment.topLeft,
+                                      colors: is2VgSelected
+                                          ? [Colors.blue[300], Colors.blue[900]]
+                                          : [Colors.white, Colors.white]),
+                                ),
+                                width: 80,
+                                height: 35,
+                                child: FlatButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        is2VgSelected = !is2VgSelected;
+                                        _cutKey.currentState
+                                            .updateVal("EX", is2VgSelected);
+                                        _polKey.currentState
+                                            .updateVal("EX", is2VgSelected);
+                                        _symmKey.currentState
+                                            .updateVal("EX", is2VgSelected);
+                                        _cutKey.currentState
+                                            .updateVal("VG", is2VgSelected);
+                                        _polKey.currentState
+                                            .updateVal("VG", is2VgSelected);
+                                        _symmKey.currentState
+                                            .updateVal("VG", is2VgSelected);
+                                      });
+                                    },
+                                    child: Text('3VG+',
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: is2VgSelected
+                                                ? Colors.white
+                                                : Colors.black))),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  shape: BoxShape.rectangle,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.bottomLeft,
+                                      end: Alignment.topLeft,
+                                      colors: is2ExSelected
+                                          ? [Colors.blue[300], Colors.blue[900]]
+                                          : [Colors.white, Colors.white]),
+                                ),
+                                width: 60,
+                                height: 35,
+                                child: FlatButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        is2ExSelected = !is2ExSelected;
+                                        _cutKey.currentState
+                                            .updateVal("EX", is2ExSelected);
+                                        _polKey.currentState
+                                            .updateVal("EX", is2ExSelected);
+                                      });
+                                    },
+                                    child: Text('2EX',
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: is2ExSelected
+                                                ? Colors.white
+                                                : Colors.black))),
+                              )),
+                        ],
+                      ),
+                    ),
+                  ),
 
                   //Cut Selection
                   Padding(
@@ -816,7 +865,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 50,
+                                height: 40,
                                 width: MediaQuery.of(context).size.width,
                                 child: CutCategory(
                                   customFunction: getSelectedCut,
@@ -850,7 +899,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 50,
+                                height: 40,
                                 // width: MediaQuery.of(context).size.width - 75,
                                 child: PolishCategory(
                                   customFunction: getSelectedPolish,
@@ -885,7 +934,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 50,
+                                height: 40,
                                 // width: MediaQuery.of(context).size.width - 100,
                                 child: SymmetryCategory(
                                   customFunction: getSelectedSymm,
@@ -920,7 +969,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 50,
+                                height: 40,
                                 // width: MediaQuery.of(context).size.width - 125,
                                 child: FuorescenceCategory(
                                   customFunction: getSelectedFluo,
@@ -954,7 +1003,7 @@ class _StoneSearchState extends State<StoneSearch> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                               child: Container(
-                                height: 50,
+                                height: 40,
                                 // width: MediaQuery.of(context).size.width - 105,
                                 child: CertificateCategory(
                                   customFunction: getSelectedCerti,
@@ -970,5 +1019,58 @@ class _StoneSearchState extends State<StoneSearch> {
             ),
           )),
     ));
+  }
+}
+
+class NumberTextInputFormatter extends TextInputFormatter {
+  NumberTextInputFormatter({this.decimalRange})
+      : assert(decimalRange == null || decimalRange > 0);
+
+  final int decimalRange;
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue _newValue = this.sanitize(newValue);
+    String text = _newValue.text;
+
+    if (decimalRange == null) {
+      return _newValue;
+    }
+
+    if (text == '.') {
+      return TextEditingValue(
+        text: '0.',
+        selection: _newValue.selection.copyWith(baseOffset: 2, extentOffset: 2),
+        composing: TextRange.empty,
+      );
+    }
+
+    return this.isValid(text) ? _newValue : oldValue;
+  }
+
+  bool isValid(String text) {
+    int dots = '.'.allMatches(text).length;
+
+    if (dots == 0 && text.length < 4) {
+      return true;
+    }
+
+    if (dots > 1 && text.length > 3) {
+      return false;
+    }
+
+    return text.substring(text.indexOf('.') + 1).length <= decimalRange;
+  }
+
+  TextEditingValue sanitize(TextEditingValue value) {
+    if (false == value.text.contains('-')) {
+      return value;
+    }
+
+    String text = '-' + value.text.replaceAll('-', '');
+
+    return TextEditingValue(
+        text: text, selection: value.selection, composing: TextRange.empty);
   }
 }

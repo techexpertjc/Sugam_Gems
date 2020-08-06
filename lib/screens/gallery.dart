@@ -42,7 +42,7 @@ class _MyGalleryState extends State<MyGallery> {
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 3)),
             child: FadeInImage(
-                placeholder: AssetImage('images/placeholder.png'),
+                placeholder: AssetImage('images/loading1.gif'),
                 image: CacheImage(
                   element["Link"],
                 ))),

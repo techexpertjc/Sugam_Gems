@@ -70,7 +70,7 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                       fontSize: 15,
                       color: selectedSymmetry[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedSymmetry[element]
                 //     ? Colors.indigo[800]
@@ -106,14 +106,14 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                   style: TextStyle(
                       color: selectedSymmetry[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedSymmetry[element]
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),
-                    side: BorderSide(color: Colors.black)),
+                    side: BorderSide(color: Colors.grey[700])),
               ),
             )));
       }

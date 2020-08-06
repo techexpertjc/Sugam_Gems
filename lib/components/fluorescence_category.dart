@@ -65,7 +65,7 @@ class _FuorescenceCategoryState extends State<FuorescenceCategory> {
                       fontSize: 15,
                       color: selectedFuorescence[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedFuorescence[element]
                 //     ? Colors.indigo[800]
@@ -101,14 +101,14 @@ class _FuorescenceCategoryState extends State<FuorescenceCategory> {
                   style: TextStyle(
                       color: selectedFuorescence[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedFuorescence[element]
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),
-                    side: BorderSide(color: Colors.black)),
+                    side: BorderSide(color: Colors.grey[700])),
               )),
         ));
       }

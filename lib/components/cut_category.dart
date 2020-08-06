@@ -68,8 +68,9 @@ class CutCategoryState extends State<CutCategory> {
                   element,
                   style: TextStyle(
                       fontSize: 15,
-                      color:
-                          selectedCut[element] ? Colors.white : Colors.black),
+                      color: selectedCut[element]
+                          ? Colors.white
+                          : Colors.grey[700]),
                 ),
                 // color: selectedCut[element]
                 //     ? Colors.indigo[800]
@@ -103,14 +104,15 @@ class CutCategoryState extends State<CutCategory> {
                 child: Text(
                   element,
                   style: TextStyle(
-                      color:
-                          selectedCut[element] ? Colors.white : Colors.black),
+                      color: selectedCut[element]
+                          ? Colors.white
+                          : Colors.grey[700]),
                 ),
                 // color:
                 //     selectedCut[element] ? Colors.indigo[800] : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),
-                    side: BorderSide(color: Colors.black)),
+                    side: BorderSide(color: Colors.grey[700])),
               ),
             )));
       }

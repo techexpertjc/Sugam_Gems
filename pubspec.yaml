@@ -27,6 +27,7 @@ dependencies:
   video_player: ^0.10.11+2
   path_provider: ^1.6.11
   cache_image: ^1.0.5
+  permission: ^0.1.7
   particles_flutter: "^0.1.1"
 
   
@@ -62,6 +63,8 @@ flutter:
    - images/diamond_png/Round.png
    - images/diamond_png/Emerald.png
    - images/diamond_png/Pear.png
+   - images/diamond_png/others.png
+   - images/loading1.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

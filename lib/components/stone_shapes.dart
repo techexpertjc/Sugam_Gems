@@ -72,8 +72,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -86,7 +86,8 @@ class _StoneShapesState extends State<StoneShapes> {
                         icon: Icon(
                           OzoneDiaicon.all,
                           size: 30.0,
-                          color: changeColorAll ? Colors.white : Colors.black,
+                          color:
+                              changeColorAll ? Colors.white : Colors.grey[700],
                         ),
                         onPressed: () {
                           // print(changeColorAll);
@@ -112,7 +113,8 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color: changeColorAll ? Colors.white : Colors.black),
+                          color:
+                              changeColorAll ? Colors.white : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -125,8 +127,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -138,8 +140,9 @@ class _StoneShapesState extends State<StoneShapes> {
                     IconButton(
                         icon: Icon(OzoneDiaicon.round,
                             size: 30.0,
-                            color:
-                                changeColorRound ? Colors.white : Colors.black),
+                            color: changeColorRound
+                                ? Colors.white
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Round clicked in shapes
                           changeColorRound = !changeColorRound;
@@ -150,8 +153,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color:
-                              changeColorRound ? Colors.white : Colors.black),
+                          color: changeColorRound
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -164,8 +168,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -179,7 +183,7 @@ class _StoneShapesState extends State<StoneShapes> {
                             size: 30.0,
                             color: changeColorPrincess
                                 ? Colors.white
-                                : Colors.black),
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Round clicked in shapes
                           changeColorPrincess = !changeColorPrincess;
@@ -192,7 +196,7 @@ class _StoneShapesState extends State<StoneShapes> {
                           fontWeight: FontWeight.bold,
                           color: changeColorPrincess
                               ? Colors.white
-                              : Colors.black),
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -205,8 +209,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -220,7 +224,7 @@ class _StoneShapesState extends State<StoneShapes> {
                             size: 30.0,
                             color: changeColorCushion
                                 ? Colors.white
-                                : Colors.black),
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Cushion clicked in shapes
                           changeColorCushion = !changeColorCushion;
@@ -231,8 +235,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color:
-                              changeColorCushion ? Colors.white : Colors.black),
+                          color: changeColorCushion
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -245,8 +250,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -258,8 +263,9 @@ class _StoneShapesState extends State<StoneShapes> {
                     IconButton(
                         icon: Icon(OzoneDiaicon.oval,
                             size: 30.0,
-                            color:
-                                changeColorOval ? Colors.white : Colors.black),
+                            color: changeColorOval
+                                ? Colors.white
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Oval clicked in shapes
                           changeColorOval = !changeColorOval;
@@ -270,7 +276,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color: changeColorOval ? Colors.white : Colors.black),
+                          color: changeColorOval
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -283,8 +291,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -298,7 +306,7 @@ class _StoneShapesState extends State<StoneShapes> {
                             size: 30.0,
                             color: changeColorEmerald
                                 ? Colors.white
-                                : Colors.black),
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Emerald clicked in shapes
                           changeColorEmerald = !changeColorEmerald;
@@ -309,8 +317,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color:
-                              changeColorEmerald ? Colors.white : Colors.black),
+                          color: changeColorEmerald
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -323,8 +332,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -336,8 +345,9 @@ class _StoneShapesState extends State<StoneShapes> {
                     IconButton(
                         icon: Icon(OzoneDiaicon.pear,
                             size: 30.0,
-                            color:
-                                changeColorPear ? Colors.white : Colors.black),
+                            color: changeColorPear
+                                ? Colors.white
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Pear clicked in shapes
                           changeColorPear = !changeColorPear;
@@ -348,7 +358,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color: changeColorPear ? Colors.white : Colors.black),
+                          color: changeColorPear
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -361,8 +373,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -376,7 +388,7 @@ class _StoneShapesState extends State<StoneShapes> {
                             size: 30.0,
                             color: changeColorAsscher
                                 ? Colors.white
-                                : Colors.black),
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Asscher clicked in shapes
                           changeColorAsscher = !changeColorAsscher;
@@ -387,8 +399,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color:
-                              changeColorAsscher ? Colors.white : Colors.black),
+                          color: changeColorAsscher
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -401,8 +414,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -414,8 +427,9 @@ class _StoneShapesState extends State<StoneShapes> {
                     IconButton(
                         icon: Icon(OzoneDiaicon.heart,
                             size: 30.0,
-                            color:
-                                changeColorHeart ? Colors.white : Colors.black),
+                            color: changeColorHeart
+                                ? Colors.white
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Heart clicked in shapes
                           changeColorHeart = !changeColorHeart;
@@ -426,8 +440,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color:
-                              changeColorHeart ? Colors.white : Colors.black),
+                          color: changeColorHeart
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -440,8 +455,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -455,7 +470,7 @@ class _StoneShapesState extends State<StoneShapes> {
                             size: 30.0,
                             color: changeColorRadiant
                                 ? Colors.white
-                                : Colors.black),
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Radiant clicked in shapes
                           changeColorRadiant = !changeColorRadiant;
@@ -466,8 +481,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color:
-                              changeColorRadiant ? Colors.white : Colors.black),
+                          color: changeColorRadiant
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -480,8 +496,8 @@ class _StoneShapesState extends State<StoneShapes> {
               child: Container(
                 padding: EdgeInsets.only(bottom: 1.0, left: 5.0, right: 5.0),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, style: BorderStyle.solid),
+                    border: Border.all(),
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
                     gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topLeft,
@@ -495,7 +511,7 @@ class _StoneShapesState extends State<StoneShapes> {
                             size: 30.0,
                             color: changeColorMarquise
                                 ? Colors.white
-                                : Colors.black),
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Marquise clicked in shapes
                           changeColorMarquise = !changeColorMarquise;
@@ -508,7 +524,7 @@ class _StoneShapesState extends State<StoneShapes> {
                           fontWeight: FontWeight.bold,
                           color: changeColorMarquise
                               ? Colors.white
-                              : Colors.black),
+                              : Colors.grey[700]),
                     )
                   ],
                 ),
@@ -527,8 +543,8 @@ class _StoneShapesState extends State<StoneShapes> {
                       colors: changeColorOther
                           ? [Colors.blue[300], Colors.blue[900]]
                           : [Colors.transparent, Colors.transparent]),
-                  border:
-                      Border.all(color: Colors.black, style: BorderStyle.solid),
+                  border: Border.all(),
+                  borderRadius: BorderRadius.all(Radius.circular(7)),
                   // color: changeColorOther
                   //     ? Colors.transparent
                   //     : Colors.transparent
@@ -538,8 +554,9 @@ class _StoneShapesState extends State<StoneShapes> {
                     IconButton(
                         icon: Icon(OzoneDiaicon.other,
                             size: 30.0,
-                            color:
-                                changeColorOther ? Colors.white : Colors.black),
+                            color: changeColorOther
+                                ? Colors.white
+                                : Colors.grey[700]),
                         onPressed: () {
                           //TODO Implement function of Other clicked in shapes
                           changeColorOther = !changeColorOther;
@@ -550,8 +567,9 @@ class _StoneShapesState extends State<StoneShapes> {
                       style: TextStyle(
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-                          color:
-                              changeColorOther ? Colors.white : Colors.black),
+                          color: changeColorOther
+                              ? Colors.white
+                              : Colors.grey[700]),
                     )
                   ],
                 ),

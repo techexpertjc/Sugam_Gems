@@ -58,7 +58,7 @@ class _CertificateCategoryState extends State<CertificateCategory> {
                       fontSize: 15,
                       color: selectedCertificate[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedCertificate[element]
                 //     ? Colors.indigo[800]
@@ -94,14 +94,14 @@ class _CertificateCategoryState extends State<CertificateCategory> {
                   style: TextStyle(
                       color: selectedCertificate[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedCertificate[element]
                 //     ? Colors.indigo[800]
                 //     : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),
-                    side: BorderSide(color: Colors.black)),
+                    side: BorderSide(color: Colors.grey[700])),
               ),
             )));
       }

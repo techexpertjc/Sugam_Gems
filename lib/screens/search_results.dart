@@ -1,8 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sugam_gems/components/call_service.dart';
-import 'package:sugam_gems/components/ozone_diaicon_icons.dart';
 import 'package:sugam_gems/screens/dna_page.dart';
 
 class SearchResults extends StatefulWidget {
@@ -20,6 +20,7 @@ class _SearchResultsState extends State<SearchResults> {
   bool dataLoaded = false;
   @override
   void initState() {
+    searchResultList = List();
     super.initState();
     requestData = widget.reqData;
     getSearchResults();
@@ -50,26 +51,37 @@ class _SearchResultsState extends State<SearchResults> {
         print(requestData);
         dataLoaded = true;
         response = json.decode(value);
-        totalrecords = int.parse(response["GetStockappResult"]["TotalPcs"]);
-        searchResultList = response["GetStockappResult"]["Result"];
+        response["GetStockappResult"]["TotalPcs"] == null
+            ? totalrecords = 0
+            : totalrecords =
+                int.parse(response["GetStockappResult"]["TotalPcs"]);
+
+        searchResultList = response["GetStockappResult"]["Result"] == null
+            ? []
+            : response["GetStockappResult"]["Result"];
+
         print(totalrecords);
+
+        if (totalrecords == 0 ||
+            response["GetStockappResult"]["TotalPcs"] == null) {
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              child: AlertDialog(
+                title: Text('Sugam Gems'),
+                content: Text('0 Stone(s) found for your Search Criteria'),
+                actions: <Widget>[
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      child: Text('Ok'))
+                ],
+              ));
+        }
       });
     });
-  }
-
-  Widget getShape(String shapeName) {
-    switch (shapeName.toLowerCase()) {
-      case 'round':
-        return Column(
-          children: <Widget>[
-            Icon(
-              OzoneDiaicon.round,
-              size: 50,
-            ),
-            Text(shapeName)
-          ],
-        );
-    }
   }
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -110,12 +122,23 @@ class _SearchResultsState extends State<SearchResults> {
   Widget buildSearchResultTile(BuildContext context, int i) {
     isChecked.add(false);
     return InkWell(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => DnaPage(
-                    obj: searchResultList[i],
-                  ))),
+      onTap: () async {
+        try {
+          final result = await InternetAddress.lookup('google.com');
+          if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+            print('connected');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DnaPage(
+                          obj: searchResultList[i],
+                        )));
+          }
+        } on SocketException catch (_) {
+          scaffoldKey.currentState.showSnackBar(SnackBar(
+              content: Text('Please connect the device to active Internet')));
+        }
+      },
       child: Card(
         child: Container(
           padding: EdgeInsets.all(5),
@@ -183,7 +206,7 @@ class _SearchResultsState extends State<SearchResults> {
                               ', ' +
                               searchResultList[i]["LAB"],
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                       ),
                       Container(
@@ -345,7 +368,7 @@ class _SearchResultsState extends State<SearchResults> {
                         ),
                         Container(
                           width: (12 * 100 / 36) * 10,
-                          color: Colors.blue[200],
+                          color: Color(0xFFF0F8FF),
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 left: 10.0, right: 10.0, top: 10, bottom: 20),
@@ -369,6 +392,7 @@ class _SearchResultsState extends State<SearchResults> {
         ),
       ),
     );
+    ;
   }
 
   ScrollController myController = ScrollController();
@@ -390,12 +414,12 @@ class _SearchResultsState extends State<SearchResults> {
             child: Padding(
               padding: const EdgeInsets.only(left: 1.0, right: 1),
               child: Container(
-                color: Colors.blue[200],
-                height: 65,
+                color: Color(0xFFF0F8FF),
+                height: 70,
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      flex: 60,
+                      flex: 70,
                       child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey)),
@@ -407,7 +431,7 @@ class _SearchResultsState extends State<SearchResults> {
                                 decoration: BoxDecoration(
                                   border: Border(
                                       bottom: BorderSide(color: Colors.grey)),
-                                  color: Colors.blue[200],
+                                  color: Color(0xFFF0F8FF),
                                 ),
                                 child: Text('Stones',
                                     style: TextStyle(fontSize: 15)),
@@ -433,7 +457,7 @@ class _SearchResultsState extends State<SearchResults> {
                               decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(color: Colors.grey)),
-                                color: Colors.blue[200],
+                                color: Color(0xFFF0F8FF),
                               ),
                               child:
                                   Text('Carat', style: TextStyle(fontSize: 15)),
@@ -458,7 +482,7 @@ class _SearchResultsState extends State<SearchResults> {
                               decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(color: Colors.grey)),
-                                color: Colors.blue[200],
+                                color: Color(0xFFF0F8FF),
                               ),
                               child: Text('Avg. Disc',
                                   style: TextStyle(fontSize: 15)),
@@ -472,7 +496,7 @@ class _SearchResultsState extends State<SearchResults> {
                       ),
                     ),
                     Expanded(
-                      flex: 80,
+                      flex: 75,
                       child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey)),
@@ -481,11 +505,10 @@ class _SearchResultsState extends State<SearchResults> {
                           children: <Widget>[
                             Container(
                               decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(color: Colors.grey)),
-                                color: Colors.blue[200],
-                              ),
-                              child: Text('Per Carat \$',
+                                  border: Border(
+                                      bottom: BorderSide(color: Colors.grey)),
+                                  color: Color(0xFFF0F8FF)),
+                              child: Text('\$\/Carat',
                                   style: TextStyle(fontSize: 15)),
                               padding: EdgeInsets.all(7),
                             ),
@@ -497,7 +520,7 @@ class _SearchResultsState extends State<SearchResults> {
                       ),
                     ),
                     Expanded(
-                      flex: 80,
+                      flex: 75,
                       child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey)),
@@ -509,7 +532,7 @@ class _SearchResultsState extends State<SearchResults> {
                               decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(color: Colors.grey)),
-                                color: Colors.blue[200],
+                                color: Color(0xFFF0F8FF),
                               ),
                               child: Center(
                                 child: Text('Total \$',

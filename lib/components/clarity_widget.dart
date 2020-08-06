@@ -55,15 +55,15 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                 child: Text(
                   'Clarity',
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Colors.grey[700]),
                 )),
             Padding(
               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 50,
+                height: 40,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -71,7 +71,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
-                          width: 60,
+                          width: 50,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
@@ -97,8 +97,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                               'FL',
                               style: TextStyle(
                                   fontSize: 15,
-                                  color:
-                                      flSelected ? Colors.white : Colors.black),
+                                  color: flSelected
+                                      ? Colors.white
+                                      : Colors.grey[700]),
                             ),
                             // color: flSelected
                             //     ? Colors.indigo[800]
@@ -108,7 +109,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                     Padding(
                         padding: EdgeInsets.only(left: 5),
                         child: Container(
-                          width: 60,
+                          width: 50,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius:
@@ -131,8 +132,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                               'IF',
                               style: TextStyle(
                                   fontSize: 15,
-                                  color:
-                                      ifSelected ? Colors.white : Colors.black),
+                                  color: ifSelected
+                                      ? Colors.white
+                                      : Colors.grey[700]),
                             ),
                             // color: ifSelected
                             //     ? Colors.indigo[800]
@@ -170,7 +172,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                   fontSize: 15,
                                   color: vvs1Selected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey[700]),
                             ),
                             // color: vvs1Selected
                             //     ? Colors.indigo[800]
@@ -208,7 +210,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                   fontSize: 15,
                                   color: vvs2Selected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey[700]),
                             ),
                             // color: vvs2Selected
                             //     ? Colors.indigo[800]
@@ -246,7 +248,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                   fontSize: 15,
                                   color: vs1Selected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey[700]),
                             ),
                             // color: vs1Selected
                             //     ? Colors.indigo[800]
@@ -284,7 +286,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                   fontSize: 15,
                                   color: vs2Selected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey[700]),
                             ),
                             // color: vs2Selected
                             //     ? Colors.indigo[800]
@@ -322,7 +324,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                   fontSize: 15,
                                   color: si1Selected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey[700]),
                             ),
                             // color: si1Selected
                             //     ? Colors.indigo[800]
@@ -360,7 +362,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                   fontSize: 15,
                                   color: si2Selected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey[700]),
                             ),
                             // color: si2Selected
                             //     ? Colors.indigo[800]
@@ -398,7 +400,7 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                   fontSize: 15,
                                   color: si3Selected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey[700]),
                             ),
                             // color: si3Selected
                             //     ? Colors.indigo[800]
@@ -433,8 +435,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                             'I1',
                             style: TextStyle(
                                 fontSize: 15,
-                                color:
-                                    i1Selected ? Colors.white : Colors.black),
+                                color: i1Selected
+                                    ? Colors.white
+                                    : Colors.grey[700]),
                           ),
                           // color: i1Selected
                           //     ? Colors.indigo[800]
@@ -471,8 +474,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                               'I2',
                               style: TextStyle(
                                   fontSize: 15,
-                                  color:
-                                      i2Selected ? Colors.white : Colors.black),
+                                  color: i2Selected
+                                      ? Colors.white
+                                      : Colors.grey[700]),
                             ),
                             // color: i2Selected
                             //     ? Colors.indigo[800]
@@ -508,8 +512,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                               'I3',
                               style: TextStyle(
                                   fontSize: 15,
-                                  color:
-                                      i3Selected ? Colors.white : Colors.black),
+                                  color: i3Selected
+                                      ? Colors.white
+                                      : Colors.grey[700]),
                             ),
                             // color: i3Selected
                             //     ? Colors.indigo[800]

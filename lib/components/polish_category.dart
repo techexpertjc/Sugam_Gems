@@ -70,7 +70,7 @@ class PolishCategoryState extends State<PolishCategory> {
                       fontSize: 15,
                       color: selectedPolish[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedPolish[element]
                 //     ? Colors.indigo[800]
@@ -107,7 +107,7 @@ class PolishCategoryState extends State<PolishCategory> {
                       fontSize: 15,
                       color: selectedPolish[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedPolish[element]
                 //     ? Colors.indigo[800]

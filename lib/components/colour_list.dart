@@ -70,11 +70,11 @@ class _ColourListState extends State<ColourList> {
                 child: Text(
                   element,
                   style: TextStyle(
-                      // fontFamily: 'ClearSansLight',
+                      fontFamily: 'ClearSansLight',
                       fontSize: 15,
                       color: selectedColour[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedColour[element]
                 //     ? Colors.indigo[800]
@@ -110,10 +110,11 @@ class _ColourListState extends State<ColourList> {
                 child: Text(
                   element,
                   style: TextStyle(
+                      fontFamily: 'ClearSansLight',
                       fontSize: 15,
                       color: selectedColour[element]
                           ? Colors.white
-                          : Colors.black),
+                          : Colors.grey[700]),
                 ),
                 // color: selectedColour[element]
                 //     ? Colors.indigo[800]
