@@ -123,10 +123,12 @@ class CutCategoryState extends State<CutCategory> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      scrollDirection: Axis.horizontal,
-      children: _getColourList(),
+    return Center(
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        children: _getColourList(),
+      ),
     );
   }
 }
