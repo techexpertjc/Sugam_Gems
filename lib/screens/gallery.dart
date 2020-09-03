@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cache_image/cache_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sugam_gems/components/call_service.dart';
 
@@ -43,7 +42,7 @@ class _MyGalleryState extends State<MyGallery> {
                 border: Border.all(color: Colors.white, width: 3)),
             child: FadeInImage(
                 placeholder: AssetImage('images/loading1.gif'),
-                image: CacheImage(
+                image: NetworkImage(
                   element["Link"],
                 ))),
       ));

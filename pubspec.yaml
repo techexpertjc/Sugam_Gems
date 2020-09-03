@@ -26,7 +26,7 @@ dependencies:
   flutter_downloader: ^1.4.4
   video_player: ^0.10.11+2
   path_provider: ^1.6.11
-  cache_image: ^1.0.5
+  # cache_image: ^1.0.5
   permission: ^0.1.7
   particles_flutter: "^0.1.1"
 
