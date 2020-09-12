@@ -61,6 +61,9 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedSymmetry[element] = !selectedSymmetry[element];
                   setState(() {});
                 },
@@ -95,6 +98,9 @@ class SymmetryCategoryState extends State<SymmetryCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedSymmetry[element] = !selectedSymmetry[element];
                   symmetryList.forEach((el) {
                     selectedSymmetry[el] = selectedSymmetry[element];

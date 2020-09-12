@@ -46,6 +46,9 @@ class _LusterCategoryState extends State<LusterCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedLuster[element] = !selectedLuster[element];
                   setState(() {});
                 },
@@ -79,6 +82,9 @@ class _LusterCategoryState extends State<LusterCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedLuster[element] = !selectedLuster[element];
                   lusterList.forEach((el) {
                     selectedLuster[el] = selectedLuster[element];

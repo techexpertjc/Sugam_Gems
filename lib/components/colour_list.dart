@@ -64,6 +64,9 @@ class _ColourListState extends State<ColourList> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedColour[element] = !selectedColour[element];
                   setState(() {});
                 },
@@ -101,6 +104,9 @@ class _ColourListState extends State<ColourList> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedColour[element] = !selectedColour[element];
                   colourList.forEach((el) {
                     selectedColour[el] = selectedColour[element];

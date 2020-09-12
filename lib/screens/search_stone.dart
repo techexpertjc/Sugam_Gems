@@ -347,6 +347,16 @@ class _StoneSearchState extends State<StoneSearch> {
   final GlobalKey<PolishCategoryState> _polKey = GlobalKey();
   final GlobalKey<SymmetryCategoryState> _symmKey = GlobalKey();
   bool is3EXSelected = false, is2VgSelected = false, is2ExSelected = false;
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    if (!FocusScope.of(context).hasPrimaryFocus) {
+      FocusScope.of(context).unfocus();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -375,6 +385,12 @@ class _StoneSearchState extends State<StoneSearch> {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   onPressed: () {
+                    if (!FocusScope.of(context).hasPrimaryFocus) {
+                      FocusScope.of(context).unfocus();
+                    }
+                    if (!FocusScope.of(context).hasPrimaryFocus) {
+                      FocusScope.of(context).unfocus();
+                    }
                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
@@ -442,6 +458,13 @@ class _StoneSearchState extends State<StoneSearch> {
           IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
+                if (!FocusScope.of(context).hasPrimaryFocus) {
+                  FocusScope.of(context).unfocus();
+                }
+                if (!FocusScope.of(context).hasPrimaryFocus) {
+                  FocusScope.of(context).unfocus();
+                }
+
                 // print(Navigator.of(context));
                 Navigator.popUntil(context, ModalRoute.withName('/home'));
               })
@@ -559,6 +582,14 @@ class _StoneSearchState extends State<StoneSearch> {
                                       width: 50,
                                       child: RawMaterialButton(
                                         onPressed: () {
+                                          if (!FocusScope.of(context)
+                                              .hasPrimaryFocus) {
+                                            FocusScope.of(context).unfocus();
+                                          }
+                                          if (!FocusScope.of(context)
+                                              .hasPrimaryFocus) {
+                                            FocusScope.of(context).unfocus();
+                                          }
                                           if (fromCaratCntrlr.text.trim() !=
                                                   '' &&
                                               toCaratCntrlr.text.trim() != '') {
@@ -630,6 +661,14 @@ class _StoneSearchState extends State<StoneSearch> {
                                           side: BorderSide(color: Colors.grey)),
                                       child: Icon(Icons.close),
                                       onPressed: () {
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
                                         setState(() {
                                           _caratList.clear();
                                           CaratValueCntrlr.text = '';
@@ -662,6 +701,10 @@ class _StoneSearchState extends State<StoneSearch> {
                     //                     // color: Colors.transparent,
                     //                     shape: Border.all(color: Colors.grey),
                     //                     onPressed: () {
+                    // if (!FocusScope.of(context)
+                    //     .hasPrimaryFocus) {
+                    //   FocusScope.of(context).unfocus();
+                    // }  if (!FocusScope.of(context).hasPrimaryFocus) {FocusScope.of(context).unfocus();}
                     //                       _caratList.clear();
                     //                       setState(() {});
                     //                     },
@@ -760,6 +803,14 @@ class _StoneSearchState extends State<StoneSearch> {
                                   height: 35,
                                   child: FlatButton(
                                       onPressed: () {
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
                                         setState(() {
                                           is3EXSelected = !is3EXSelected;
                                           _cutKey.currentState
@@ -801,6 +852,14 @@ class _StoneSearchState extends State<StoneSearch> {
                                   height: 35,
                                   child: FlatButton(
                                       onPressed: () {
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
                                         setState(() {
                                           is2VgSelected = !is2VgSelected;
                                           _cutKey.currentState
@@ -846,6 +905,14 @@ class _StoneSearchState extends State<StoneSearch> {
                                   height: 35,
                                   child: FlatButton(
                                       onPressed: () {
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
+                                        if (!FocusScope.of(context)
+                                            .hasPrimaryFocus) {
+                                          FocusScope.of(context).unfocus();
+                                        }
                                         setState(() {
                                           is2ExSelected = !is2ExSelected;
                                           _cutKey.currentState

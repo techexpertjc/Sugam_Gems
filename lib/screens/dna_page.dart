@@ -125,6 +125,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
+                            if (!FocusScope.of(context).hasPrimaryFocus) {
+                              FocusScope.of(context).unfocus();
+                            }
                             myController.animateTo(0);
                             myController.index = 0;
                             dwnloadUrl = data["CERTI"];
@@ -153,6 +156,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
+                            if (!FocusScope.of(context).hasPrimaryFocus) {
+                              FocusScope.of(context).unfocus();
+                            }
                             myController.animateTo(1);
                             myController.index = 1;
                             dwnloadUrl = data["VIDEO"];
@@ -181,6 +187,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
+                            if (!FocusScope.of(context).hasPrimaryFocus) {
+                              FocusScope.of(context).unfocus();
+                            }
                             dwnloadUrl = data["IMG"];
                             myController.animateTo(2);
 

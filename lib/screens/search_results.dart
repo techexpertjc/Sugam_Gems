@@ -73,6 +73,9 @@ class _SearchResultsState extends State<SearchResults> {
                 actions: <Widget>[
                   FlatButton(
                       onPressed: () {
+                        if (!FocusScope.of(context).hasPrimaryFocus) {
+                          FocusScope.of(context).unfocus();
+                        }
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },

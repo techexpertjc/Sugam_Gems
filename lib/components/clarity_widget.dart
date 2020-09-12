@@ -90,6 +90,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                 borderRadius: BorderRadius.circular(5),
                                 side: BorderSide(color: Colors.grey)),
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               flSelected = !flSelected;
                               setState(() {});
                             },
@@ -125,6 +128,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               ifSelected = !ifSelected;
                               setState(() {});
                             },
@@ -163,6 +169,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               vvs1Selected = !vvs1Selected;
                               setState(() {});
                             },
@@ -201,6 +210,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               vvs2Selected = !vvs2Selected;
                               setState(() {});
                             },
@@ -239,6 +251,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               vs1Selected = !vs1Selected;
                               setState(() {});
                             },
@@ -277,6 +292,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               vs2Selected = !vs2Selected;
                               setState(() {});
                             },
@@ -315,6 +333,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               si1Selected = !si1Selected;
                               setState(() {});
                             },
@@ -353,6 +374,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               si2Selected = !si2Selected;
                               setState(() {});
                             },
@@ -391,6 +415,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               si3Selected = !si3Selected;
                               setState(() {});
                             },
@@ -428,6 +455,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                       ])),
                         child: FlatButton(
                           onPressed: () {
+                            if (!FocusScope.of(context).hasPrimaryFocus) {
+                              FocusScope.of(context).unfocus();
+                            }
                             i1Selected = !i1Selected;
                             setState(() {});
                           },
@@ -467,6 +497,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               i2Selected = !i2Selected;
                               setState(() {});
                             },
@@ -505,6 +538,9 @@ class _ClarityChoicesState extends State<ClarityChoices> {
                                         ])),
                           child: FlatButton(
                             onPressed: () {
+                              if (!FocusScope.of(context).hasPrimaryFocus) {
+                                FocusScope.of(context).unfocus();
+                              }
                               i3Selected = !i3Selected;
                               setState(() {});
                             },

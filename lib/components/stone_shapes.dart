@@ -90,6 +90,9 @@ class _StoneShapesState extends State<StoneShapes> {
                               changeColorAll ? Colors.white : Colors.grey[700],
                         ),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           // print(changeColorAll);
                           //TODO Implement function of All clicked in shapes
 
@@ -144,6 +147,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Round clicked in shapes
                           changeColorRound = !changeColorRound;
                           setState(() {});
@@ -185,6 +191,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Round clicked in shapes
                           changeColorPrincess = !changeColorPrincess;
                           setState(() {});
@@ -226,6 +235,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Cushion clicked in shapes
                           changeColorCushion = !changeColorCushion;
                           setState(() {});
@@ -267,6 +279,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Oval clicked in shapes
                           changeColorOval = !changeColorOval;
                           setState(() {});
@@ -308,6 +323,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Emerald clicked in shapes
                           changeColorEmerald = !changeColorEmerald;
                           setState(() {});
@@ -349,6 +367,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Pear clicked in shapes
                           changeColorPear = !changeColorPear;
                           setState(() {});
@@ -390,6 +411,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Asscher clicked in shapes
                           changeColorAsscher = !changeColorAsscher;
                           setState(() {});
@@ -431,6 +455,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Heart clicked in shapes
                           changeColorHeart = !changeColorHeart;
                           setState(() {});
@@ -472,6 +499,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Radiant clicked in shapes
                           changeColorRadiant = !changeColorRadiant;
                           setState(() {});
@@ -513,6 +543,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Marquise clicked in shapes
                           changeColorMarquise = !changeColorMarquise;
                           setState(() {});
@@ -558,6 +591,9 @@ class _StoneShapesState extends State<StoneShapes> {
                                 ? Colors.white
                                 : Colors.grey[700]),
                         onPressed: () {
+                          if (!FocusScope.of(context).hasPrimaryFocus) {
+                            FocusScope.of(context).unfocus();
+                          }
                           //TODO Implement function of Other clicked in shapes
                           changeColorOther = !changeColorOther;
                           setState(() {});

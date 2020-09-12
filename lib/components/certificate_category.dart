@@ -49,6 +49,9 @@ class _CertificateCategoryState extends State<CertificateCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedCertificate[element] = !selectedCertificate[element];
                   setState(() {});
                 },
@@ -83,6 +86,9 @@ class _CertificateCategoryState extends State<CertificateCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedCertificate[element] = !selectedCertificate[element];
                   certificateList.forEach((el) {
                     selectedCertificate[el] = selectedCertificate[element];
