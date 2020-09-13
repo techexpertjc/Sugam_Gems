@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:video_player/video_player.dart';
 
 class DnaPage extends StatefulWidget {
@@ -345,21 +347,25 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                         color: Colors.white,
                       ),
                       onPressed: () async {
-                        final taskId = await FlutterDownloader.enqueue(
-                          url: dwnloadUrl,
-                          savedDir: directory.path +
+                        var storagePermission;
+
+                        if (await Permission.storage.request().isGranted) {
+                          final taskId = await FlutterDownloader.enqueue(
+                            url: dwnloadUrl,
+                            savedDir: directory.path +
+                                Platform.pathSeparator +
+                                'Download',
+                            showNotification:
+                                true, // show download progress in status bar (for Android)
+                            openFileFromNotification:
+                                true, // click on notification to open downloaded file (for Android)
+                          );
+                          print(directory.path +
                               Platform.pathSeparator +
-                              'Download',
-                          showNotification:
-                              true, // show download progress in status bar (for Android)
-                          openFileFromNotification:
-                              true, // click on notification to open downloaded file (for Android)
-                        );
-                        print(directory.path +
-                            Platform.pathSeparator +
-                            'Download');
-                        scaffoldKey.currentState.showSnackBar(
-                            SnackBar(content: Text('Download Started')));
+                              'Download');
+                          scaffoldKey.currentState.showSnackBar(
+                              SnackBar(content: Text('Download Started')));
+                        }
                       }),
                 ),
                 Container(
