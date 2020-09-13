@@ -94,6 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.fromLTRB(10, 40, 10, 10),
                     child: RaisedButton(
                       onPressed: () {
+                        if (!FocusScope.of(context).hasPrimaryFocus) {
+                          FocusScope.of(context).unfocus();
+                        }
                         Navigator.of(context).pushNamed('/searchPage');
                       },
                       elevation: 5.0,
@@ -160,6 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
                     child: RaisedButton(
                       onPressed: () {
+                        if (!FocusScope.of(context).hasPrimaryFocus) {
+                          FocusScope.of(context).unfocus();
+                        }
                         Navigator.of(context).pushNamed("/aboutUs");
                       },
                       elevation: 5.0,
@@ -187,6 +193,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
                     child: RaisedButton(
                       onPressed: () {
+                        if (!FocusScope.of(context).hasPrimaryFocus) {
+                          FocusScope.of(context).unfocus();
+                        }
                         Navigator.of(context).pushNamed('/contact');
                       },
                       elevation: 5.0,

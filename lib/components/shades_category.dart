@@ -39,6 +39,9 @@ class _ShadesCategoryState extends State<ShadesCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedShades[element] = !selectedShades[element];
                   setState(() {});
                 },
@@ -72,6 +75,9 @@ class _ShadesCategoryState extends State<ShadesCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedShades[element] = !selectedShades[element];
                   shadesList.forEach((el) {
                     selectedShades[el] = selectedShades[element];

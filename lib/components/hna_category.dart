@@ -39,6 +39,9 @@ class _HNACategoryState extends State<HNACategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedHNA[element] = !selectedHNA[element];
                   setState(() {});
                 },
@@ -70,6 +73,9 @@ class _HNACategoryState extends State<HNACategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedHNA[element] = !selectedHNA[element];
                   hnaList.forEach((el) {
                     selectedHNA[el] = selectedHNA[element];

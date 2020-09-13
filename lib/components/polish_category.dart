@@ -61,6 +61,9 @@ class PolishCategoryState extends State<PolishCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedPolish[element] = !selectedPolish[element];
                   setState(() {});
                 },
@@ -95,6 +98,9 @@ class PolishCategoryState extends State<PolishCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedPolish[element] = !selectedPolish[element];
                   polishList.forEach((el) {
                     selectedPolish[el] = selectedPolish[element];

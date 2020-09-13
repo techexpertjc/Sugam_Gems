@@ -45,6 +45,9 @@ class _BlackIncCategoryState extends State<BlackIncCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedBlackInc[element] = !selectedBlackInc[element];
                   setState(() {});
                 },
@@ -78,6 +81,9 @@ class _BlackIncCategoryState extends State<BlackIncCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedBlackInc[element] = !selectedBlackInc[element];
                   blackIncList.forEach((el) {
                     selectedBlackInc[el] = selectedBlackInc[element];

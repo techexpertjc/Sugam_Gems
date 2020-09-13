@@ -56,6 +56,9 @@ class _FuorescenceCategoryState extends State<FuorescenceCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedFuorescence[element] = !selectedFuorescence[element];
                   setState(() {});
                 },
@@ -90,6 +93,9 @@ class _FuorescenceCategoryState extends State<FuorescenceCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedFuorescence[element] = !selectedFuorescence[element];
                   fuorescenceList.forEach((el) {
                     selectedFuorescence[el] = selectedFuorescence[element];

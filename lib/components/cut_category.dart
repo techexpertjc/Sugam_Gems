@@ -61,6 +61,9 @@ class CutCategoryState extends State<CutCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedCut[element] = !selectedCut[element];
                   setState(() {});
                 },
@@ -95,6 +98,9 @@ class CutCategoryState extends State<CutCategory> {
                           : [Colors.transparent, Colors.transparent])),
               child: FlatButton(
                 onPressed: () {
+                  if (!FocusScope.of(context).hasPrimaryFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
                   selectedCut[element] = !selectedCut[element];
                   cutList.forEach((el) {
                     selectedCut[el] = selectedCut[element];
