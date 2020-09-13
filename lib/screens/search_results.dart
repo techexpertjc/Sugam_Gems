@@ -150,7 +150,6 @@ class _SearchResultsState extends State<SearchResults> {
               Expanded(
                 flex: 1,
                 child: Container(
-                  color: Colors.black,
                   width: 20,
                   child: Checkbox(
                       // tristate: false,
