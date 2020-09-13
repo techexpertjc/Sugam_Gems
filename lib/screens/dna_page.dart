@@ -7,7 +7,6 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class DnaPage extends StatefulWidget {
   final obj;
@@ -217,51 +216,124 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                 ),
                 Container(
                   height: 400,
-                  child: TabBarView(controller: myController, children: [
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          color: Colors.grey),
-                      child: pdfLoaded
-                          ? pdfPage
-                          : Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                    ),
-                    AspectRatio(
-                      aspectRatio: myVideoController.value.aspectRatio,
-                      child: videoLoaded
-                          ? Container(
-                              child: Stack(
-                                  alignment: Alignment.bottomCenter,
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      child: VideoPlayer(myVideoController),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      child: PlayPauseOverlay(
-                                        controller: myVideoController,
+                  child: Stack(
+                    children: [
+                      TabBarView(controller: myController, children: [
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              color: Colors.grey),
+                          child: pdfLoaded
+                              ? pdfPage
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                        ),
+                        AspectRatio(
+                          aspectRatio: myVideoController.value.aspectRatio,
+                          child: videoLoaded
+                              ? Container(
+                                  child: Stack(
+                                      alignment: Alignment.bottomCenter,
+                                      children: <Widget>[
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: VideoPlayer(myVideoController),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: PlayPauseOverlay(
+                                            controller: myVideoController,
+                                          ),
+                                        ),
+                                        VideoProgressIndicator(
+                                            myVideoController,
+                                            allowScrubbing: true),
+                                      ]),
+                                )
+                              : noPreview,
+                        ),
+                        FadeInImage(
+                          imageErrorBuilder: (context, Obj, stackTrc) {
+                            return Center(
+                              child: Text('Cant load imaage'),
+                            );
+                          },
+                          image: NetworkImage(data['IMG']),
+                          placeholder: AssetImage('images/placeholder.png'),
+                        ),
+                      ]),
+                      Positioned(
+                        bottom: 20,
+                        right: 20,
+                        child: InkWell(
+                          onTap: () {
+                            Widget fullScreenWidget;
+                            if (myController.index == 0) {
+                              fullScreenWidget = pdfPage;
+                            } else if (myController.index == 1) {
+                              fullScreenWidget = RotatedBox(
+                                quarterTurns: 1,
+                                child: Scaffold(
+                                  body: videoLoaded
+                                      ? Container(
+                                          child: Stack(
+                                              alignment: Alignment.bottomCenter,
+                                              children: <Widget>[
+                                                Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: VideoPlayer(
+                                                      myVideoController),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: PlayPauseOverlay(
+                                                    controller:
+                                                        myVideoController,
+                                                  ),
+                                                ),
+                                                VideoProgressIndicator(
+                                                    myVideoController,
+                                                    allowScrubbing: true),
+                                              ]),
+                                        )
+                                      : noPreview,
+                                ),
+                              );
+                            } else if (myController.index == 2) {
+                              fullScreenWidget = Container(
+                                child: FadeInImage(
+                                  imageErrorBuilder: (context, Obj, stackTrc) {
+                                    return Center(
+                                      child: SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                2,
+                                        child: Scaffold(
+                                            body: Center(
+                                                child:
+                                                    Text('Cant load imaage'))),
                                       ),
-                                    ),
-                                    VideoProgressIndicator(myVideoController,
-                                        allowScrubbing: true),
-                                  ]),
-                            )
-                          : noPreview,
-                    ),
-                    FadeInImage(
-                      imageErrorBuilder: (context, Obj, stackTrc) {
-                        return Center(
-                          child: Text('Cant load imaage'),
-                        );
-                      },
-                      image: NetworkImage(data['IMG']),
-                      placeholder: AssetImage('images/placeholder.png'),
-                    ),
-                  ]),
+                                    );
+                                  },
+                                  image: NetworkImage(data['IMG']),
+                                  placeholder:
+                                      AssetImage('images/placeholder.png'),
+                                ),
+                              );
+                            }
+                            showDialog(
+                                context: context, child: fullScreenWidget);
+                          },
+                          child: Icon(
+                            Icons.fullscreen,
+                            color: Colors.black,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Container(
                   child: MaterialButton(

@@ -150,6 +150,7 @@ class _SearchResultsState extends State<SearchResults> {
               Expanded(
                 flex: 1,
                 child: Container(
+                  color: Colors.black,
                   width: 20,
                   child: Checkbox(
                       // tristate: false,
@@ -193,7 +194,7 @@ class _SearchResultsState extends State<SearchResults> {
               Expanded(
                 flex: 11,
                 child: Container(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -208,8 +209,7 @@ class _SearchResultsState extends State<SearchResults> {
                               searchResultList[i]["PUR"] +
                               ', ' +
                               searchResultList[i]["LAB"],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -242,7 +242,7 @@ class _SearchResultsState extends State<SearchResults> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
+                                    padding: const EdgeInsets.only(left: 5.0),
                                     child: RichText(
                                       text: TextSpan(children: <TextSpan>[
                                         TextSpan(
@@ -281,7 +281,7 @@ class _SearchResultsState extends State<SearchResults> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
+                                    padding: const EdgeInsets.only(left: 5.0),
                                     child: RichText(
                                       text: TextSpan(children: <TextSpan>[
                                         TextSpan(
@@ -325,7 +325,7 @@ class _SearchResultsState extends State<SearchResults> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
+                                    padding: const EdgeInsets.only(left: 5.0),
                                     child: RichText(
                                       text: TextSpan(children: <TextSpan>[
                                         TextSpan(

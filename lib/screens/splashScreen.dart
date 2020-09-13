@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
               enableHover: true,
               hoverColor: Colors.white,
               hoverRadius: 50,
-              connectDots: false, //not recommended
+              connectDots: true, //not recommended
             ),
             Container(
               color: Color(0xAA000000),
