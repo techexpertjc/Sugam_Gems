@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class DnaPage extends StatefulWidget {
   final obj;
@@ -70,7 +72,8 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       myVideoController.initialize();
       myVideoController.setLooping(true);
       myVideoController.play();
-      directory = await getApplicationDocumentsDirectory();
+      directory = await getExternalStorageDirectory();
+      print(directory);
       if (!Directory(directory.path + Platform.pathSeparator + 'Download')
           .existsSync()) {
         Directory(directory.path + Platform.pathSeparator + 'Download')
@@ -280,6 +283,9 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                           openFileFromNotification:
                               true, // click on notification to open downloaded file (for Android)
                         );
+                        print(directory.path +
+                            Platform.pathSeparator +
+                            'Download');
                         scaffoldKey.currentState.showSnackBar(
                             SnackBar(content: Text('Download Started')));
                       }),
