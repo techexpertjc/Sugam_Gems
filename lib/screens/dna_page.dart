@@ -7,7 +7,6 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class DnaPage extends StatefulWidget {
   final obj;
@@ -74,10 +73,8 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       myVideoController.play();
       directory = await getExternalStorageDirectory();
       print(directory);
-      if (!Directory(directory.path + Platform.pathSeparator + 'Download')
-          .existsSync()) {
-        Directory(directory.path + Platform.pathSeparator + 'Download')
-            .createSync();
+      if (!Directory(directory.path + Platform.pathSeparator + 'Download').existsSync()) {
+        Directory(directory.path + Platform.pathSeparator + 'Download').createSync();
       }
       PDFDocument.fromURL(data["CERTI"]).then((value) {
         setState(() {
@@ -120,13 +117,10 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                       controller: myController,
                       tabs: <Widget>[
                         RaisedButton(
-                          color: myController.index == 0
-                              ? Colors.blue
-                              : Colors.grey,
+                          color: myController.index == 0 ? Colors.blue : Colors.grey,
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             if (!FocusScope.of(context).hasPrimaryFocus) {
                               FocusScope.of(context).unfocus();
@@ -144,20 +138,16 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Cert',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
+                                style: TextStyle(fontSize: 15, color: Colors.white),
                               )
                             ],
                           ),
                         ),
                         RaisedButton(
-                          color: myController.index == 1
-                              ? Colors.blue
-                              : Colors.grey,
+                          color: myController.index == 1 ? Colors.blue : Colors.grey,
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             if (!FocusScope.of(context).hasPrimaryFocus) {
                               FocusScope.of(context).unfocus();
@@ -175,20 +165,16 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Video',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
+                                style: TextStyle(fontSize: 15, color: Colors.white),
                               )
                             ],
                           ),
                         ),
                         RaisedButton(
-                          color: myController.index == 2
-                              ? Colors.blue
-                              : Colors.grey,
+                          color: myController.index == 2 ? Colors.blue : Colors.grey,
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             if (!FocusScope.of(context).hasPrimaryFocus) {
                               FocusScope.of(context).unfocus();
@@ -207,8 +193,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Image',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
+                                style: TextStyle(fontSize: 15, color: Colors.white),
                               )
                             ],
                           ),
@@ -220,9 +205,8 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                   child: TabBarView(controller: myController, children: [
                     Container(
                       padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          color: Colors.grey),
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.grey), color: Colors.grey),
                       child: pdfLoaded
                           ? pdfPage
                           : Center(
@@ -233,22 +217,19 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                       aspectRatio: myVideoController.value.aspectRatio,
                       child: videoLoaded
                           ? Container(
-                              child: Stack(
-                                  alignment: Alignment.bottomCenter,
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      child: VideoPlayer(myVideoController),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      child: PlayPauseOverlay(
-                                        controller: myVideoController,
-                                      ),
-                                    ),
-                                    VideoProgressIndicator(myVideoController,
-                                        allowScrubbing: true),
-                                  ]),
+                              child: Stack(alignment: Alignment.bottomCenter, children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: VideoPlayer(myVideoController),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: PlayPauseOverlay(
+                                    controller: myVideoController,
+                                  ),
+                                ),
+                                VideoProgressIndicator(myVideoController, allowScrubbing: true),
+                              ]),
                             )
                           : noPreview,
                     ),
@@ -266,8 +247,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                 Container(
                   child: MaterialButton(
                       color: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       child: Icon(
                         Icons.file_download,
                         color: Colors.white,
@@ -275,19 +255,15 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                       onPressed: () async {
                         final taskId = await FlutterDownloader.enqueue(
                           url: dwnloadUrl,
-                          savedDir: directory.path +
-                              Platform.pathSeparator +
-                              'Download',
+                          savedDir: directory.path + Platform.pathSeparator + 'Download',
                           showNotification:
                               true, // show download progress in status bar (for Android)
                           openFileFromNotification:
                               true, // click on notification to open downloaded file (for Android)
                         );
-                        print(directory.path +
-                            Platform.pathSeparator +
-                            'Download');
-                        scaffoldKey.currentState.showSnackBar(
-                            SnackBar(content: Text('Download Started')));
+                        print(directory.path + Platform.pathSeparator + 'Download');
+                        scaffoldKey.currentState
+                            .showSnackBar(SnackBar(content: Text('Download Started')));
                       }),
                 ),
                 Container(
@@ -313,9 +289,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Packet No',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -341,9 +315,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   '%',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -375,9 +347,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Lab',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -403,9 +373,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Total',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -437,9 +405,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Certi No',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -486,9 +452,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Shape',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -514,9 +478,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Cut',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -548,9 +510,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Carat',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -576,9 +536,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Polish',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -610,9 +568,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Color',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -638,9 +594,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Sym',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -672,9 +626,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Clarity',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -700,9 +652,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Fls',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
