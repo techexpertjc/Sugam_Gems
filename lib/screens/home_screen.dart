@@ -48,21 +48,21 @@ class _HomeScreenState extends State<HomeScreen> {
               // image: DecorationImage(
               //     image: AssetImage('images/BackImg.png'),
               //     fit: BoxFit.fitHeight,
-              backgroundBlendMode: BlendMode.srcATop,
-              color: Colors.black87),
+              backgroundBlendMode: BlendMode.luminosity,
+              color: Colors.black),
           child: SingleChildScrollView(
             child: Stack(children: <Widget>[
               CircularParticle(
                 key: particleKey,
-                awayRadius: 50,
+                awayRadius: 100,
                 numberOfParticles: 50,
-                speedOfParticles: 0.5,
+                speedOfParticles: 1,
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 onTapAnimation: true,
                 particleColor: Colors.white.withAlpha(150),
                 awayAnimationDuration: Duration(milliseconds: 1000),
-                maxParticleSize: 15,
+                maxParticleSize: 7,
                 isRandSize: true,
                 isRandomColor: false,
                 randColorList: [
@@ -72,10 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Colors.green.withAlpha(210)
                 ],
                 awayAnimationCurve: Curves.easeInCubic,
-                enableHover: true,
+                // enableHover: true,
                 hoverColor: Colors.white,
-                hoverRadius: 50,
-                connectDots: false, //not recommended
+                hoverRadius: 25,
+                connectDots: true, //not recommended
               ),
               Column(
                 children: <Widget>[
