@@ -145,6 +145,19 @@ class _StoneSearchState extends State<StoneSearch> {
 
   Future<void> searchStone() async {
     String shape = '', carats = '', clarity = '', colourList = '';
+    if (_caratList.length < 1) {
+      if (fromCaratCntrlr.text != '') {
+        if (toCaratCntrlr.text != '') {
+          _caratList.add(
+              fromCaratCntrlr.text.trim() + '-' + toCaratCntrlr.text.trim());
+        } else {
+          _caratList.add(fromCaratCntrlr.text.trim() + '-' + '99');
+        }
+        fromCaratCntrlr.text = '';
+        toCaratCntrlr.text = '';
+        CaratValueCntrlr.text = _caratList.join(',');
+      }
+    }
     if (changeColorAll) {
       shape = 'RBC,PC,EM,AC,OV,RN,PS,HT,MQ,CS';
     } else {
@@ -349,12 +362,16 @@ class _StoneSearchState extends State<StoneSearch> {
   bool is3EXSelected = false, is2VgSelected = false, is2ExSelected = false;
 
   @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
+  @override
   void setState(fn) {
     // TODO: implement setState
     super.setState(fn);
-    if (!FocusScope.of(context).hasPrimaryFocus) {
-      FocusScope.of(context).unfocus();
-    }
   }
 
   @override
@@ -387,10 +404,25 @@ class _StoneSearchState extends State<StoneSearch> {
                   onPressed: () {
                     if (!FocusScope.of(context).hasPrimaryFocus) {
                       FocusScope.of(context).unfocus();
+                      setState(() {
+                        if (_caratList.length < 1) {
+                          if (fromCaratCntrlr.text != '') {
+                            if (toCaratCntrlr.text != '') {
+                              _caratList.add(fromCaratCntrlr.text.trim() +
+                                  '-' +
+                                  toCaratCntrlr.text.trim());
+                            } else {
+                              _caratList.add(
+                                  fromCaratCntrlr.text.trim() + '-' + '99');
+                            }
+                            fromCaratCntrlr.text = '';
+                            toCaratCntrlr.text = '';
+                            CaratValueCntrlr.text = _caratList.join(',');
+                          }
+                        }
+                      });
                     }
-                    if (!FocusScope.of(context).hasPrimaryFocus) {
-                      FocusScope.of(context).unfocus();
-                    }
+
                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
@@ -461,9 +493,6 @@ class _StoneSearchState extends State<StoneSearch> {
                 if (!FocusScope.of(context).hasPrimaryFocus) {
                   FocusScope.of(context).unfocus();
                 }
-                if (!FocusScope.of(context).hasPrimaryFocus) {
-                  FocusScope.of(context).unfocus();
-                }
 
                 // print(Navigator.of(context));
                 Navigator.popUntil(context, ModalRoute.withName('/home'));
@@ -475,6 +504,22 @@ class _StoneSearchState extends State<StoneSearch> {
         onTap: () {
           if (!FocusScope.of(context).hasPrimaryFocus) {
             FocusScope.of(context).unfocus();
+            setState(() {
+              if (_caratList.length < 1) {
+                if (fromCaratCntrlr.text != '') {
+                  if (toCaratCntrlr.text != '') {
+                    _caratList.add(fromCaratCntrlr.text.trim() +
+                        '-' +
+                        toCaratCntrlr.text.trim());
+                  } else {
+                    _caratList.add(fromCaratCntrlr.text.trim() + '-' + '99');
+                  }
+                  fromCaratCntrlr.text = '';
+                  toCaratCntrlr.text = '';
+                  CaratValueCntrlr.text = _caratList.join(',');
+                }
+              }
+            });
           }
         },
         child: Form(
@@ -589,6 +634,19 @@ class _StoneSearchState extends State<StoneSearch> {
                                           if (!FocusScope.of(context)
                                               .hasPrimaryFocus) {
                                             FocusScope.of(context).unfocus();
+                                          }
+                                          if (fromCaratCntrlr.text.trim() !=
+                                              '') {
+                                            _caratList.add(
+                                                fromCaratCntrlr.text.trim() +
+                                                    '-' +
+                                                    '99');
+                                            setState(() {
+                                              fromCaratCntrlr.text = '';
+                                              toCaratCntrlr.text = '';
+                                              CaratValueCntrlr.text =
+                                                  _caratList.join(',');
+                                            });
                                           }
                                           if (fromCaratCntrlr.text.trim() !=
                                                   '' &&

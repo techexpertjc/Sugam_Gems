@@ -54,15 +54,15 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Stack(children: <Widget>[
               CircularParticle(
                 key: particleKey,
-                awayRadius: 100,
+                awayRadius: 50,
                 numberOfParticles: 50,
-                speedOfParticles: 1,
+                speedOfParticles: 0.5,
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 onTapAnimation: true,
                 particleColor: Colors.white.withAlpha(150),
                 awayAnimationDuration: Duration(milliseconds: 1000),
-                maxParticleSize: 7,
+                maxParticleSize: 15,
                 isRandSize: true,
                 isRandomColor: false,
                 randColorList: [
@@ -72,10 +72,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   Colors.green.withAlpha(210)
                 ],
                 awayAnimationCurve: Curves.easeInCubic,
-                // enableHover: true,
+                enableHover: true,
                 hoverColor: Colors.white,
-                hoverRadius: 25,
+                hoverRadius: 50,
                 connectDots: true, //not recommended
+              ),
+              Container(
+                color: Color(0xAA000000),
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
               ),
               Column(
                 children: <Widget>[
@@ -87,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             image: AssetImage('images/img9.jpg'),
                             fit: BoxFit.cover,
                             colorFilter: ColorFilter.mode(
-                                primaryBlack.shade500, BlendMode.luminosity))),
+                                Color(0xAA000000), BlendMode.luminosity))),
                     child: Image.asset('images/LogoNew.png'),
                   ),
                   Padding(
