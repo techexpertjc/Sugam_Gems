@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:keyboard_actions/keyboard_actions_config.dart';
 
 import 'package:sugam_gems/components/certificate_category.dart';
 import 'package:sugam_gems/components/clarity_widget.dart';
@@ -145,6 +147,19 @@ class _StoneSearchState extends State<StoneSearch> {
 
   Future<void> searchStone() async {
     String shape = '', carats = '', clarity = '', colourList = '';
+    if (_caratList.length < 1) {
+      if (fromCaratCntrlr.text != '') {
+        if (toCaratCntrlr.text != '') {
+          _caratList.add(
+              fromCaratCntrlr.text.trim() + '-' + toCaratCntrlr.text.trim());
+        } else {
+          _caratList.add(fromCaratCntrlr.text.trim() + '-' + '99');
+        }
+        fromCaratCntrlr.text = '';
+        toCaratCntrlr.text = '';
+        CaratValueCntrlr.text = _caratList.join(',');
+      }
+    }
     if (changeColorAll) {
       shape = 'RBC,PC,EM,AC,OV,RN,PS,HT,MQ,CS';
     } else {
@@ -348,13 +363,42 @@ class _StoneSearchState extends State<StoneSearch> {
   final GlobalKey<SymmetryCategoryState> _symmKey = GlobalKey();
   bool is3EXSelected = false, is2VgSelected = false, is2ExSelected = false;
 
+  final FocusNode _nodeText1 = FocusNode();
+  KeyboardActionsConfig _buildConfig(BuildContext context) {
+    return KeyboardActionsConfig(
+        keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
+        keyboardBarColor: Colors.grey[200],
+        nextFocus: true,
+        actions: [
+          KeyboardActionsItem(focusNode: _nodeText1, toolbarButtons: [
+            (node) {
+              return GestureDetector(
+                onTap: () => node.unfocus(),
+                child: Container(
+                  color: Color(0XFFB8C6FF),
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "DONE",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              );
+            }
+          ])
+        ]);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
   @override
   void setState(fn) {
     // TODO: implement setState
     super.setState(fn);
-    if (!FocusScope.of(context).hasPrimaryFocus) {
-      FocusScope.of(context).unfocus();
-    }
   }
 
   @override
@@ -387,10 +431,25 @@ class _StoneSearchState extends State<StoneSearch> {
                   onPressed: () {
                     if (!FocusScope.of(context).hasPrimaryFocus) {
                       FocusScope.of(context).unfocus();
+                      setState(() {
+                        if (_caratList.length < 1) {
+                          if (fromCaratCntrlr.text != '') {
+                            if (toCaratCntrlr.text != '') {
+                              _caratList.add(fromCaratCntrlr.text.trim() +
+                                  '-' +
+                                  toCaratCntrlr.text.trim());
+                            } else {
+                              _caratList.add(
+                                  fromCaratCntrlr.text.trim() + '-' + '99');
+                            }
+                            fromCaratCntrlr.text = '';
+                            toCaratCntrlr.text = '';
+                            CaratValueCntrlr.text = _caratList.join(',');
+                          }
+                        }
+                      });
                     }
-                    if (!FocusScope.of(context).hasPrimaryFocus) {
-                      FocusScope.of(context).unfocus();
-                    }
+
                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
@@ -461,9 +520,6 @@ class _StoneSearchState extends State<StoneSearch> {
                 if (!FocusScope.of(context).hasPrimaryFocus) {
                   FocusScope.of(context).unfocus();
                 }
-                if (!FocusScope.of(context).hasPrimaryFocus) {
-                  FocusScope.of(context).unfocus();
-                }
 
                 // print(Navigator.of(context));
                 Navigator.popUntil(context, ModalRoute.withName('/home'));
@@ -475,6 +531,22 @@ class _StoneSearchState extends State<StoneSearch> {
         onTap: () {
           if (!FocusScope.of(context).hasPrimaryFocus) {
             FocusScope.of(context).unfocus();
+            setState(() {
+              if (_caratList.length < 1) {
+                if (fromCaratCntrlr.text != '') {
+                  if (toCaratCntrlr.text != '') {
+                    _caratList.add(fromCaratCntrlr.text.trim() +
+                        '-' +
+                        toCaratCntrlr.text.trim());
+                  } else {
+                    _caratList.add(fromCaratCntrlr.text.trim() + '-' + '99');
+                  }
+                  fromCaratCntrlr.text = '';
+                  toCaratCntrlr.text = '';
+                  CaratValueCntrlr.text = _caratList.join(',');
+                }
+              }
+            });
           }
         },
         child: Form(
@@ -523,6 +595,7 @@ class _StoneSearchState extends State<StoneSearch> {
                                   child: Container(
                                     padding: EdgeInsets.only(left: 10),
                                     child: TextFormField(
+                                      focusNode: _nodeText1,
                                       style: TextStyle(color: Colors.grey[700]),
                                       controller: fromCaratCntrlr,
                                       inputFormatters: [
@@ -554,6 +627,7 @@ class _StoneSearchState extends State<StoneSearch> {
                                     child: Container(
                                       padding: EdgeInsets.only(left: 10),
                                       child: TextFormField(
+                                        focusNode: _nodeText1,
                                         style:
                                             TextStyle(color: Colors.grey[700]),
                                         controller: toCaratCntrlr,
@@ -589,6 +663,19 @@ class _StoneSearchState extends State<StoneSearch> {
                                           if (!FocusScope.of(context)
                                               .hasPrimaryFocus) {
                                             FocusScope.of(context).unfocus();
+                                          }
+                                          if (fromCaratCntrlr.text.trim() !=
+                                              '') {
+                                            _caratList.add(
+                                                fromCaratCntrlr.text.trim() +
+                                                    '-' +
+                                                    '99');
+                                            setState(() {
+                                              fromCaratCntrlr.text = '';
+                                              toCaratCntrlr.text = '';
+                                              CaratValueCntrlr.text =
+                                                  _caratList.join(',');
+                                            });
                                           }
                                           if (fromCaratCntrlr.text.trim() !=
                                                   '' &&
