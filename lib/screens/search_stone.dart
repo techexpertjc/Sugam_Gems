@@ -367,7 +367,7 @@ class _StoneSearchState extends State<StoneSearch> {
   KeyboardActionsConfig _buildConfig(BuildContext context) {
     return KeyboardActionsConfig(
         keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
-        keyboardBarColor: Colors.grey[200],
+        // keyboardBarColor: Colors.grey[200],
         nextFocus: true,
         actions: [
           KeyboardActionsItem(focusNode: _nodeText1, toolbarButtons: [
@@ -564,75 +564,45 @@ class _StoneSearchState extends State<StoneSearch> {
             });
           }
         },
-        child: Form(
-            key: formKey,
-            child: SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    //Shapes option
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                      child: Container(
-                        height: 76,
-                        color: Colors.transparent,
-                        child: StoneShapes(
-                          customFunction: updateStones,
+        child: KeyboardActions(
+          config: _buildConfig(context),
+          child: Form(
+              key: formKey,
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      //Shapes option
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                        child: Container(
+                          height: 76,
+                          color: Colors.transparent,
+                          child: StoneShapes(
+                            customFunction: updateStones,
+                          ),
                         ),
                       ),
-                    ),
 
-                    //Carat Selection
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            'Carat ',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                                color: Colors.black),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  height: 35.0,
-                                  width: 70.0,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(7))),
-                                  child: Container(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: TextFormField(
-                                      focusNode: _nodeText1,
-                                      style: TextStyle(color: Colors.grey[700]),
-                                      controller: fromCaratCntrlr,
-                                      inputFormatters: [
-                                        NumberTextInputFormatter(
-                                            decimalRange: 2)
-                                      ],
-                                      keyboardType:
-                                          TextInputType.numberWithOptions(
-                                              decimal: true),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: 'From',
-                                          hintStyle: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.grey)),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                  child: Container(
+                      //Carat Selection
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              'Carat ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0,
+                                  color: Colors.black),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(top: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
                                     height: 35.0,
                                     width: 70.0,
                                     decoration: BoxDecoration(
@@ -642,10 +612,10 @@ class _StoneSearchState extends State<StoneSearch> {
                                     child: Container(
                                       padding: EdgeInsets.only(left: 10),
                                       child: TextFormField(
-                                        focusNode: _nodeText2,
+                                        focusNode: _nodeText1,
                                         style:
                                             TextStyle(color: Colors.grey[700]),
-                                        controller: toCaratCntrlr,
+                                        controller: fromCaratCntrlr,
                                         inputFormatters: [
                                           NumberTextInputFormatter(
                                               decimalRange: 2)
@@ -655,7 +625,7 @@ class _StoneSearchState extends State<StoneSearch> {
                                                 decimal: true),
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
-                                            hintText: 'To',
+                                            hintText: 'From',
                                             hintStyle: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
@@ -663,13 +633,143 @@ class _StoneSearchState extends State<StoneSearch> {
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                     child: Container(
-                                      width: 50,
-                                      child: RawMaterialButton(
+                                      height: 35.0,
+                                      width: 70.0,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(7))),
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 10),
+                                        child: TextFormField(
+                                          focusNode: _nodeText2,
+                                          style: TextStyle(
+                                              color: Colors.grey[700]),
+                                          controller: toCaratCntrlr,
+                                          inputFormatters: [
+                                            NumberTextInputFormatter(
+                                                decimalRange: 2)
+                                          ],
+                                          keyboardType:
+                                              TextInputType.numberWithOptions(
+                                                  decimal: true),
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: 'To',
+                                              hintStyle: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey)),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      child: Container(
+                                        width: 50,
+                                        child: RawMaterialButton(
+                                          onPressed: () {
+                                            if (!FocusScope.of(context)
+                                                .hasPrimaryFocus) {
+                                              FocusScope.of(context).unfocus();
+                                            }
+                                            if (!FocusScope.of(context)
+                                                .hasPrimaryFocus) {
+                                              FocusScope.of(context).unfocus();
+                                            }
+                                            if (fromCaratCntrlr.text.trim() !=
+                                                '') {
+                                              _caratList.add(
+                                                  fromCaratCntrlr.text.trim() +
+                                                      '-' +
+                                                      '99');
+                                              setState(() {
+                                                fromCaratCntrlr.text = '';
+                                                toCaratCntrlr.text = '';
+                                                CaratValueCntrlr.text =
+                                                    _caratList.join(',');
+                                              });
+                                            }
+                                            if (fromCaratCntrlr.text.trim() !=
+                                                    '' &&
+                                                toCaratCntrlr.text.trim() !=
+                                                    '') {
+                                              _caratList.add(fromCaratCntrlr
+                                                      .text
+                                                      .trim() +
+                                                  '-' +
+                                                  toCaratCntrlr.text.trim());
+
+                                              setState(() {
+                                                fromCaratCntrlr.text = '';
+                                                toCaratCntrlr.text = '';
+                                                CaratValueCntrlr.text =
+                                                    _caratList.join(',');
+                                              });
+                                            }
+                                            if (!FocusScope.of(context)
+                                                .hasPrimaryFocus) {
+                                              FocusScope.of(context).unfocus();
+                                            }
+                                            // // print(fromCaratCntrlr.text.trim() +
+                                            //     '-' +
+                                            //     toCaratCntrlr.text.trim());
+                                            // print(MediaQuery.of(context).size.width);
+                                          },
+                                          elevation: 2.0,
+                                          fillColor: Colors.white,
+                                          child: Icon(
+                                            Icons.add,
+                                            size: 30,
+                                            // color: Colors.white,
+                                          ),
+                                          shape: CircleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.grey)),
+                                        ),
+                                      )),
+                                  Expanded(
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      child: Container(
+                                          // padding: EdgeInsets.only(bottom: 0, top: 0),
+                                          alignment: Alignment.center,
+                                          height: 35.0,
+                                          // width: 100.0,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Colors.grey),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(7))),
+                                          child: TextFormField(
+                                            textAlignVertical:
+                                                TextAlignVertical.center,
+                                            style: TextStyle(
+                                                color: Colors.grey[700]),
+                                            controller: CaratValueCntrlr,
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.only(bottom: 15),
+                                              border: InputBorder.none,
+                                            ),
+                                          )),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 50,
+                                    child: RawMaterialButton(
+                                        shape: CircleBorder(
+                                            side:
+                                                BorderSide(color: Colors.grey)),
+                                        child: Icon(Icons.close),
                                         onPressed: () {
                                           if (!FocusScope.of(context)
                                               .hasPrimaryFocus) {
@@ -679,537 +779,447 @@ class _StoneSearchState extends State<StoneSearch> {
                                               .hasPrimaryFocus) {
                                             FocusScope.of(context).unfocus();
                                           }
-                                          if (fromCaratCntrlr.text.trim() !=
-                                              '') {
-                                            _caratList.add(
-                                                fromCaratCntrlr.text.trim() +
-                                                    '-' +
-                                                    '99');
-                                            setState(() {
-                                              fromCaratCntrlr.text = '';
-                                              toCaratCntrlr.text = '';
-                                              CaratValueCntrlr.text =
-                                                  _caratList.join(',');
-                                            });
-                                          }
-                                          if (fromCaratCntrlr.text.trim() !=
-                                                  '' &&
-                                              toCaratCntrlr.text.trim() != '') {
-                                            _caratList.add(
-                                                fromCaratCntrlr.text.trim() +
-                                                    '-' +
-                                                    toCaratCntrlr.text.trim());
+                                          setState(() {
+                                            _caratList.clear();
+                                            CaratValueCntrlr.text = '';
+                                          });
+                                        }),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
 
-                                            setState(() {
-                                              fromCaratCntrlr.text = '';
-                                              toCaratCntrlr.text = '';
-                                              CaratValueCntrlr.text =
-                                                  _caratList.join(',');
-                                            });
+                      //Carat Tags
+                      // Padding(
+                      //   padding:
+                      //       EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                      //   child: Container(
+                      //     height: 30,
+                      //     width: MediaQuery.of(context).size.width,
+                      //     child: Row(
+                      //       children: <Widget>[
+                      //         Padding(
+                      //           padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                      //           child: Container(
+                      //             color: Colors.transparent,
+                      //             width: 100,
+                      //             child: (_caratList.length >= 1)
+                      //                 ? RaisedButton(
+                      //                     // color: Colors.transparent,
+                      //                     shape: Border.all(color: Colors.grey),
+                      //                     onPressed: () {
+                      // if (!FocusScope.of(context)
+                      //     .hasPrimaryFocus) {
+                      //   FocusScope.of(context).unfocus();
+                      // }  if (!FocusScope.of(context).hasPrimaryFocus) {FocusScope.of(context).unfocus();}
+                      //                       _caratList.clear();
+                      //                       setState(() {});
+                      //                     },
+                      //                     child: Text(
+                      //                       'Clear All',
+                      //                       style: TextStyle(color: Colors.black),
+                      //                     ),
+                      //                   )
+                      //                 : Container(),
+                      //           ),
+                      //         ),
+                      //         Container(
+                      //           width: MediaQuery.of(context).size.width - 110 - 20,
+                      //           child: ListView(
+                      //             shrinkWrap: true,
+                      //             scrollDirection: Axis.horizontal,
+                      //             children: _getCaratList(),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+
+                      //Clarity
+                      ClarityChoices(
+                        customFunction: updateClarity,
+                      ),
+
+                      //Colour component
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 10.0, right: 10.0, top: 10.0),
+                          child: Container(
+                            // height: 30,
+                            // width: MediaQuery.of(context).size.width - 20,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 30,
+                                  child: Text(
+                                    'Colour',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        color: Colors.black),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Container(
+                                    height: 40,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ColourList(
+                                      customFunction: getColours,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )),
+
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 30),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  'Finishing: ',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 3),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                      gradient: LinearGradient(
+                                          begin: Alignment.bottomLeft,
+                                          end: Alignment.topLeft,
+                                          colors: is3EXSelected
+                                              ? [
+                                                  Colors.blue[300],
+                                                  Colors.blue[900]
+                                                ]
+                                              : [Colors.white, Colors.white]),
+                                    ),
+                                    width: 60,
+                                    height: 35,
+                                    child: FlatButton(
+                                        onPressed: () {
+                                          if (!FocusScope.of(context)
+                                              .hasPrimaryFocus) {
+                                            FocusScope.of(context).unfocus();
                                           }
                                           if (!FocusScope.of(context)
                                               .hasPrimaryFocus) {
                                             FocusScope.of(context).unfocus();
                                           }
-                                          // // print(fromCaratCntrlr.text.trim() +
-                                          //     '-' +
-                                          //     toCaratCntrlr.text.trim());
-                                          // print(MediaQuery.of(context).size.width);
+                                          setState(() {
+                                            is3EXSelected = !is3EXSelected;
+                                            _cutKey.currentState
+                                                .updateVal("EX", is3EXSelected);
+                                            _polKey.currentState
+                                                .updateVal("EX", is3EXSelected);
+                                            _symmKey.currentState
+                                                .updateVal("EX", is3EXSelected);
+                                          });
                                         },
-                                        elevation: 2.0,
-                                        fillColor: Colors.white,
-                                        child: Icon(
-                                          Icons.add,
-                                          size: 30,
-                                          // color: Colors.white,
-                                        ),
-                                        shape: CircleBorder(
-                                            side:
-                                                BorderSide(color: Colors.grey)),
-                                      ),
-                                    )),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: Container(
-                                        // padding: EdgeInsets.only(bottom: 0, top: 0),
-                                        alignment: Alignment.center,
-                                        height: 35.0,
-                                        // width: 100.0,
-                                        decoration: BoxDecoration(
-                                            border:
-                                                Border.all(color: Colors.grey),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(7))),
-                                        child: TextFormField(
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
+                                        child: Text(
+                                          '3EX',
                                           style: TextStyle(
-                                              color: Colors.grey[700]),
-                                          controller: CaratValueCntrlr,
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.only(bottom: 15),
-                                            border: InputBorder.none,
-                                          ),
+                                              fontSize: 10,
+                                              color: is3EXSelected
+                                                  ? Colors.white
+                                                  : Colors.black),
                                         )),
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                      gradient: LinearGradient(
+                                          begin: Alignment.bottomLeft,
+                                          end: Alignment.topLeft,
+                                          colors: is2VgSelected
+                                              ? [
+                                                  Colors.blue[300],
+                                                  Colors.blue[900]
+                                                ]
+                                              : [Colors.white, Colors.white]),
+                                    ),
+                                    width: 80,
+                                    height: 35,
+                                    child: FlatButton(
+                                        onPressed: () {
+                                          if (!FocusScope.of(context)
+                                              .hasPrimaryFocus) {
+                                            FocusScope.of(context).unfocus();
+                                          }
+                                          if (!FocusScope.of(context)
+                                              .hasPrimaryFocus) {
+                                            FocusScope.of(context).unfocus();
+                                          }
+                                          setState(() {
+                                            is2VgSelected = !is2VgSelected;
+                                            _cutKey.currentState
+                                                .updateVal("EX", is2VgSelected);
+                                            _polKey.currentState
+                                                .updateVal("EX", is2VgSelected);
+                                            _symmKey.currentState
+                                                .updateVal("EX", is2VgSelected);
+                                            _cutKey.currentState
+                                                .updateVal("VG", is2VgSelected);
+                                            _polKey.currentState
+                                                .updateVal("VG", is2VgSelected);
+                                            _symmKey.currentState
+                                                .updateVal("VG", is2VgSelected);
+                                          });
+                                        },
+                                        child: Text('3VG+',
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: is2VgSelected
+                                                    ? Colors.white
+                                                    : Colors.black))),
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                      gradient: LinearGradient(
+                                          begin: Alignment.bottomLeft,
+                                          end: Alignment.topLeft,
+                                          colors: is2ExSelected
+                                              ? [
+                                                  Colors.blue[300],
+                                                  Colors.blue[900]
+                                                ]
+                                              : [Colors.white, Colors.white]),
+                                    ),
+                                    width: 60,
+                                    height: 35,
+                                    child: FlatButton(
+                                        onPressed: () {
+                                          if (!FocusScope.of(context)
+                                              .hasPrimaryFocus) {
+                                            FocusScope.of(context).unfocus();
+                                          }
+                                          if (!FocusScope.of(context)
+                                              .hasPrimaryFocus) {
+                                            FocusScope.of(context).unfocus();
+                                          }
+                                          setState(() {
+                                            is2ExSelected = !is2ExSelected;
+                                            _cutKey.currentState
+                                                .updateVal("EX", is2ExSelected);
+                                            _polKey.currentState
+                                                .updateVal("EX", is2ExSelected);
+                                          });
+                                        },
+                                        child: Text('2EX',
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: is2ExSelected
+                                                    ? Colors.white
+                                                    : Colors.black))),
+                                  )),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      //Cut Selection
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 10.0, right: 10.0, top: 10.0),
+                          child: Container(
+                            // height: 30,
+                            width: MediaQuery.of(context).size.width - 20,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 30,
+                                  child: Text(
+                                    'Cut',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        color: Colors.black),
                                   ),
                                 ),
-                                Container(
-                                  width: 50,
-                                  child: RawMaterialButton(
-                                      shape: CircleBorder(
-                                          side: BorderSide(color: Colors.grey)),
-                                      child: Icon(Icons.close),
-                                      onPressed: () {
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        setState(() {
-                                          _caratList.clear();
-                                          CaratValueCntrlr.text = '';
-                                        });
-                                      }),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Container(
+                                    height: 40,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: CutCategory(
+                                      customFunction: getSelectedCut,
+                                      key: _cutKey,
+                                    ),
+                                  ),
                                 )
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
+                          )),
 
-                    //Carat Tags
-                    // Padding(
-                    //   padding:
-                    //       EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                    //   child: Container(
-                    //     height: 30,
-                    //     width: MediaQuery.of(context).size.width,
-                    //     child: Row(
-                    //       children: <Widget>[
-                    //         Padding(
-                    //           padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                    //           child: Container(
-                    //             color: Colors.transparent,
-                    //             width: 100,
-                    //             child: (_caratList.length >= 1)
-                    //                 ? RaisedButton(
-                    //                     // color: Colors.transparent,
-                    //                     shape: Border.all(color: Colors.grey),
-                    //                     onPressed: () {
-                    // if (!FocusScope.of(context)
-                    //     .hasPrimaryFocus) {
-                    //   FocusScope.of(context).unfocus();
-                    // }  if (!FocusScope.of(context).hasPrimaryFocus) {FocusScope.of(context).unfocus();}
-                    //                       _caratList.clear();
-                    //                       setState(() {});
-                    //                     },
-                    //                     child: Text(
-                    //                       'Clear All',
-                    //                       style: TextStyle(color: Colors.black),
-                    //                     ),
-                    //                   )
-                    //                 : Container(),
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           width: MediaQuery.of(context).size.width - 110 - 20,
-                    //           child: ListView(
-                    //             shrinkWrap: true,
-                    //             scrollDirection: Axis.horizontal,
-                    //             children: _getCaratList(),
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-
-                    //Clarity
-                    ClarityChoices(
-                      customFunction: updateClarity,
-                    ),
-
-                    //Colour component
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                        child: Container(
-                          // height: 30,
-                          // width: MediaQuery.of(context).size.width - 20,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 30,
-                                child: Text(
-                                  'Colour',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Container(
-                                  height: 40,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: ColourList(
-                                    customFunction: getColours,
+                      //Polish Selection
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 10.0, right: 10.0, top: 10.0),
+                          child: Container(
+                            // height: 30,
+                            width: MediaQuery.of(context).size.width - 20,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 30,
+                                  child: Text(
+                                    'Polish',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        color: Colors.black),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        )),
-
-                    Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10, top: 30),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                'Finishing: ',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Container(
+                                    height: 40,
+                                    // width: MediaQuery.of(context).size.width - 75,
+                                    child: PolishCategory(
+                                      customFunction: getSelectedPolish,
+                                      key: _polKey,
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                            Padding(
-                                padding: EdgeInsets.only(left: 3),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    shape: BoxShape.rectangle,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                    gradient: LinearGradient(
-                                        begin: Alignment.bottomLeft,
-                                        end: Alignment.topLeft,
-                                        colors: is3EXSelected
-                                            ? [
-                                                Colors.blue[300],
-                                                Colors.blue[900]
-                                              ]
-                                            : [Colors.white, Colors.white]),
-                                  ),
-                                  width: 60,
-                                  height: 35,
-                                  child: FlatButton(
-                                      onPressed: () {
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        setState(() {
-                                          is3EXSelected = !is3EXSelected;
-                                          _cutKey.currentState
-                                              .updateVal("EX", is3EXSelected);
-                                          _polKey.currentState
-                                              .updateVal("EX", is3EXSelected);
-                                          _symmKey.currentState
-                                              .updateVal("EX", is3EXSelected);
-                                        });
-                                      },
-                                      child: Text(
-                                        '3EX',
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            color: is3EXSelected
-                                                ? Colors.white
-                                                : Colors.black),
-                                      )),
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    shape: BoxShape.rectangle,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                    gradient: LinearGradient(
-                                        begin: Alignment.bottomLeft,
-                                        end: Alignment.topLeft,
-                                        colors: is2VgSelected
-                                            ? [
-                                                Colors.blue[300],
-                                                Colors.blue[900]
-                                              ]
-                                            : [Colors.white, Colors.white]),
-                                  ),
-                                  width: 80,
-                                  height: 35,
-                                  child: FlatButton(
-                                      onPressed: () {
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        setState(() {
-                                          is2VgSelected = !is2VgSelected;
-                                          _cutKey.currentState
-                                              .updateVal("EX", is2VgSelected);
-                                          _polKey.currentState
-                                              .updateVal("EX", is2VgSelected);
-                                          _symmKey.currentState
-                                              .updateVal("EX", is2VgSelected);
-                                          _cutKey.currentState
-                                              .updateVal("VG", is2VgSelected);
-                                          _polKey.currentState
-                                              .updateVal("VG", is2VgSelected);
-                                          _symmKey.currentState
-                                              .updateVal("VG", is2VgSelected);
-                                        });
-                                      },
-                                      child: Text('3VG+',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: is2VgSelected
-                                                  ? Colors.white
-                                                  : Colors.black))),
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    shape: BoxShape.rectangle,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                    gradient: LinearGradient(
-                                        begin: Alignment.bottomLeft,
-                                        end: Alignment.topLeft,
-                                        colors: is2ExSelected
-                                            ? [
-                                                Colors.blue[300],
-                                                Colors.blue[900]
-                                              ]
-                                            : [Colors.white, Colors.white]),
-                                  ),
-                                  width: 60,
-                                  height: 35,
-                                  child: FlatButton(
-                                      onPressed: () {
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        if (!FocusScope.of(context)
-                                            .hasPrimaryFocus) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                        setState(() {
-                                          is2ExSelected = !is2ExSelected;
-                                          _cutKey.currentState
-                                              .updateVal("EX", is2ExSelected);
-                                          _polKey.currentState
-                                              .updateVal("EX", is2ExSelected);
-                                        });
-                                      },
-                                      child: Text('2EX',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: is2ExSelected
-                                                  ? Colors.white
-                                                  : Colors.black))),
-                                )),
-                          ],
-                        ),
-                      ),
-                    ),
+                          )),
 
-                    //Cut Selection
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                        child: Container(
-                          // height: 30,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 30,
-                                child: Text(
-                                  'Cut',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Container(
-                                  height: 40,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: CutCategory(
-                                    customFunction: getSelectedCut,
-                                    key: _cutKey,
+                      //Symmetry Selection
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 10.0, right: 10.0, top: 10.0),
+                          child: Container(
+                            // height: 30,
+                            width: MediaQuery.of(context).size.width - 20,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 30,
+                                  // width: 75,
+                                  child: Text(
+                                    'Symmetry',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        color: Colors.black),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        )),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Container(
+                                    height: 40,
+                                    // width: MediaQuery.of(context).size.width - 100,
+                                    child: SymmetryCategory(
+                                      customFunction: getSelectedSymm,
+                                      key: _symmKey,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )),
 
-                    //Polish Selection
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                        child: Container(
-                          // height: 30,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 30,
-                                child: Text(
-                                  'Polish',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Container(
-                                  height: 40,
-                                  // width: MediaQuery.of(context).size.width - 75,
-                                  child: PolishCategory(
-                                    customFunction: getSelectedPolish,
-                                    key: _polKey,
+                      //Fluorescence Selection
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 10.0, right: 10.0, top: 10.0),
+                          child: Container(
+                            // height: 30,
+                            width: MediaQuery.of(context).size.width - 20,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 30,
+                                  // width: 95,
+                                  child: Text(
+                                    'Fluorescence',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        color: Colors.black),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        )),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Container(
+                                    height: 40,
+                                    // width: MediaQuery.of(context).size.width - 125,
+                                    child: FuorescenceCategory(
+                                      customFunction: getSelectedFluo,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )),
 
-                    //Symmetry Selection
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                        child: Container(
-                          // height: 30,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 30,
-                                // width: 75,
-                                child: Text(
-                                  'Symmetry',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Container(
-                                  height: 40,
-                                  // width: MediaQuery.of(context).size.width - 100,
-                                  child: SymmetryCategory(
-                                    customFunction: getSelectedSymm,
-                                    key: _symmKey,
+                      //Certificate Selection
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 10.0, right: 10.0, top: 10.0),
+                          child: Container(
+                            // height: 30,
+                            width: MediaQuery.of(context).size.width - 20,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 30,
+                                  // width: 80,
+                                  child: Text(
+                                    'Certificate',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        color: Colors.black),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        )),
-
-                    //Fluorescence Selection
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                        child: Container(
-                          // height: 30,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 30,
-                                // width: 95,
-                                child: Text(
-                                  'Fluorescence',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Container(
-                                  height: 40,
-                                  // width: MediaQuery.of(context).size.width - 125,
-                                  child: FuorescenceCategory(
-                                    customFunction: getSelectedFluo,
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Container(
+                                    height: 40,
+                                    // width: MediaQuery.of(context).size.width - 105,
+                                    child: CertificateCategory(
+                                      customFunction: getSelectedCerti,
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )),
-
-                    //Certificate Selection
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                        child: Container(
-                          // height: 30,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 30,
-                                // width: 80,
-                                child: Text(
-                                  'Certificate',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Container(
-                                  height: 40,
-                                  // width: MediaQuery.of(context).size.width - 105,
-                                  child: CertificateCategory(
-                                    customFunction: getSelectedCerti,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )),
-                    Padding(padding: EdgeInsets.all(20))
-                  ],
+                                )
+                              ],
+                            ),
+                          )),
+                      Padding(padding: EdgeInsets.all(20))
+                    ],
+                  ),
                 ),
-              ),
-            )),
+              )),
+        ),
       ),
     ));
   }
