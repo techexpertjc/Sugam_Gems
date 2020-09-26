@@ -669,17 +669,10 @@ class _StoneSearchState extends State<StoneSearch> {
                                               FocusScope.of(context).unfocus();
                                             }
                                             if (fromCaratCntrlr.text.trim() !=
-                                                '') {
-                                              _caratList.add(
-                                                  fromCaratCntrlr.text.trim() +
-                                                      '-' +
-                                                      '99');
-                                              setState(() {
-                                                fromCaratCntrlr.text = '';
-                                                toCaratCntrlr.text = '';
-                                                CaratValueCntrlr.text =
-                                                    _caratList.join(',');
-                                              });
+                                                    '' &&
+                                                toCaratCntrlr.text == '') {
+                                              toCaratCntrlr.text = '99';
+                                              setState(() {});
                                             }
                                             if (fromCaratCntrlr.text.trim() !=
                                                     '' &&
