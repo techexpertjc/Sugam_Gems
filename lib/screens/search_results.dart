@@ -59,8 +59,8 @@ class _SearchResultsState extends State<SearchResults> {
         searchResultList = response["GetStockappResult"]["Result"] == null
             ? []
             : response["GetStockappResult"]["Result"];
-
-        print(totalrecords);
+        print('search param');
+        print(requestData);
 
         if (totalrecords == 0 ||
             response["GetStockappResult"]["TotalPcs"] == null) {

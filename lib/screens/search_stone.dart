@@ -289,7 +289,7 @@ class _StoneSearchState extends State<StoneSearch> {
       }
     });
     if (certiList.length > 0 && certiList[0] == ',')
-      certiList = certiList.substring(0);
+      certiList = certiList.substring(1);
 
     if (colourList.length > 0 && colourList[0] == ',')
       colourList = colourList.substring(1);
@@ -311,7 +311,7 @@ class _StoneSearchState extends State<StoneSearch> {
     data["Polish"] = polishList;
     data["Symm"] = symmList;
     data["Fls"] = floroList;
-    data["Lab"] = "";
+    data["Lab"] = certiList;
     data["MultiCts"] = carats;
     data["Token"] = "";
     data["StockType"] = "";
@@ -340,6 +340,7 @@ class _StoneSearchState extends State<StoneSearch> {
 
     try {
       final result = await InternetAddress.lookup('google.com');
+      print(certiList);
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         print('connected');
         Navigator.push(
@@ -372,32 +373,16 @@ class _StoneSearchState extends State<StoneSearch> {
         actions: [
           KeyboardActionsItem(focusNode: _nodeText1, toolbarButtons: [
             (node) {
-              return GestureDetector(
-                onTap: () => node.unfocus(),
-                child: Container(
-                  color: Color(0XFFB8C6FF),
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "DONE",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              );
+              return IconButton(
+                  icon: Icon(Icons.keyboard_hide),
+                  onPressed: () => node.unfocus());
             }
           ]),
           KeyboardActionsItem(focusNode: _nodeText2, toolbarButtons: [
             (node) {
-              return GestureDetector(
-                onTap: () => node.unfocus(),
-                child: Container(
-                  color: Color(0XFFB8C6FF),
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "DONE",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              );
+              return IconButton(
+                  icon: Icon(Icons.keyboard_hide),
+                  onPressed: () => node.unfocus());
             }
           ])
         ]);
