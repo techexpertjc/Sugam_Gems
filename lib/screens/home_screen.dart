@@ -87,12 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     padding: EdgeInsets.all(20),
                     height: 250,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('images/img9.jpg'),
-                            fit: BoxFit.cover,
-                            colorFilter: ColorFilter.mode(
-                                Color(0xAA000000), BlendMode.luminosity))),
                     child: Image.asset('images/LogoNew.png'),
                   ),
                   Padding(

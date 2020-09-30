@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -348,7 +349,20 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                       ),
                       onPressed: () async {
                         var storagePermission;
-
+                        var currIndex = myController.index;
+                        switch (currIndex) {
+                          case 0:
+                            dwnloadUrl = data["CERTI"];
+                            break;
+                          case 1:
+                            dwnloadUrl = data["VIDEO"];
+                            break;
+                          case 2:
+                            dwnloadUrl = data["IMG"];
+                            break;
+                          default:
+                        }
+                        log(dwnloadUrl);
                         if (await Permission.storage.request().isGranted) {
                           final taskId = await FlutterDownloader.enqueue(
                             url: dwnloadUrl,
