@@ -267,25 +267,27 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 child: Scaffold(
                                   appBar: AppBar(title: Text(data["STONE_ID"])),
                                   body: videoLoaded
-                                      ? AspectRatio(
-                                          aspectRatio: myVideoController.value.aspectRatio,
-                                          child: Container(
-                                            child: Stack(
-                                                alignment: Alignment.bottomCenter,
-                                                children: <Widget>[
-                                                  Container(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: VideoPlayer(myVideoController),
-                                                  ),
-                                                  Container(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: PlayPauseOverlay(
-                                                      controller: myVideoController,
+                                      ? Center(
+                                          child: AspectRatio(
+                                            aspectRatio: myVideoController.value.aspectRatio,
+                                            child: Container(
+                                              child: Stack(
+                                                  alignment: Alignment.bottomCenter,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      padding: EdgeInsets.all(10),
+                                                      child: VideoPlayer(myVideoController),
                                                     ),
-                                                  ),
-                                                  VideoProgressIndicator(myVideoController,
-                                                      allowScrubbing: true),
-                                                ]),
+                                                    Container(
+                                                      padding: EdgeInsets.all(10),
+                                                      child: PlayPauseOverlay(
+                                                        controller: myVideoController,
+                                                      ),
+                                                    ),
+                                                    VideoProgressIndicator(myVideoController,
+                                                        allowScrubbing: true),
+                                                  ]),
+                                            ),
                                           ),
                                         )
                                       : noPreview,
