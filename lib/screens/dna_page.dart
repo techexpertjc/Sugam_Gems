@@ -256,47 +256,60 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                           onTap: () {
                             Widget fullScreenWidget;
                             if (myController.index == 0) {
-                              fullScreenWidget = pdfPage;
+                              fullScreenWidget = Scaffold(
+                                  appBar: AppBar(
+                                    title: Text(data["STONE_ID"]),
+                                  ),
+                                  body: pdfPage);
                             } else if (myController.index == 1) {
                               fullScreenWidget = RotatedBox(
-                                quarterTurns: 1,
+                                quarterTurns: 0,
                                 child: Scaffold(
+                                  appBar: AppBar(title: Text(data["STONE_ID"])),
                                   body: videoLoaded
-                                      ? Container(
-                                          child: Stack(
-                                              alignment: Alignment.bottomCenter,
-                                              children: <Widget>[
-                                                Container(
-                                                  padding: EdgeInsets.all(10),
-                                                  child: VideoPlayer(myVideoController),
-                                                ),
-                                                Container(
-                                                  padding: EdgeInsets.all(10),
-                                                  child: PlayPauseOverlay(
-                                                    controller: myVideoController,
+                                      ? AspectRatio(
+                                          aspectRatio: myVideoController.value.aspectRatio,
+                                          child: Container(
+                                            child: Stack(
+                                                alignment: Alignment.bottomCenter,
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding: EdgeInsets.all(10),
+                                                    child: VideoPlayer(myVideoController),
                                                   ),
-                                                ),
-                                                VideoProgressIndicator(myVideoController,
-                                                    allowScrubbing: true),
-                                              ]),
+                                                  Container(
+                                                    padding: EdgeInsets.all(10),
+                                                    child: PlayPauseOverlay(
+                                                      controller: myVideoController,
+                                                    ),
+                                                  ),
+                                                  VideoProgressIndicator(myVideoController,
+                                                      allowScrubbing: true),
+                                                ]),
+                                          ),
                                         )
                                       : noPreview,
                                 ),
                               );
                             } else if (myController.index == 2) {
-                              fullScreenWidget = Container(
-                                child: FadeInImage(
-                                  imageErrorBuilder: (context, Obj, stackTrc) {
-                                    return Center(
-                                      child: SizedBox(
-                                        height: MediaQuery.of(context).size.height / 2,
-                                        child:
-                                            Scaffold(body: Center(child: Text('Cant load imaage'))),
-                                      ),
-                                    );
-                                  },
-                                  image: NetworkImage(data['IMG']),
-                                  placeholder: AssetImage('images/placeholder.png'),
+                              fullScreenWidget = Scaffold(
+                                appBar: AppBar(
+                                  title: Text(data["STONE_ID"]),
+                                ),
+                                body: Container(
+                                  child: FadeInImage(
+                                    imageErrorBuilder: (context, Obj, stackTrc) {
+                                      return Center(
+                                        child: SizedBox(
+                                          height: MediaQuery.of(context).size.height / 2,
+                                          child: Scaffold(
+                                              body: Center(child: Text('Cant load imaage'))),
+                                        ),
+                                      );
+                                    },
+                                    image: NetworkImage(data['IMG']),
+                                    placeholder: AssetImage('images/placeholder.png'),
+                                  ),
                                 ),
                               );
                             }

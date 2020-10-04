@@ -231,12 +231,15 @@ class _SearchResultsState extends State<SearchResults> {
                                         TextSpan(
                                             text: 'Cut: ',
                                             style: TextStyle(
+                                                fontSize: 12,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold)),
                                         TextSpan(
                                             text: searchResultList[i]["CUT"],
-                                            style:
-                                                TextStyle(color: Colors.black))
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                            ))
                                       ]),
                                     ),
                                   ),
@@ -247,8 +250,10 @@ class _SearchResultsState extends State<SearchResults> {
                                         TextSpan(
                                             text: 'Fluo: ',
                                             style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            )),
                                         TextSpan(
                                             text: searchResultList[i]["FLUO"],
                                             style:
@@ -270,12 +275,16 @@ class _SearchResultsState extends State<SearchResults> {
                                         TextSpan(
                                             text: 'Pol: ',
                                             style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            )),
                                         TextSpan(
                                             text: searchResultList[i]["POL"],
-                                            style:
-                                                TextStyle(color: Colors.black))
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                            ))
                                       ]),
                                     ),
                                   ),
@@ -286,8 +295,10 @@ class _SearchResultsState extends State<SearchResults> {
                                         TextSpan(
                                             text: 'Meas: ',
                                             style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            )),
                                         TextSpan(
                                             text: searchResultList[i]["M1"] +
                                                 'X' +
@@ -330,12 +341,16 @@ class _SearchResultsState extends State<SearchResults> {
                                         TextSpan(
                                             text: 'Certi: ',
                                             style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            )),
                                         TextSpan(
                                             text: searchResultList[i]["CERTNO"],
-                                            style:
-                                                TextStyle(color: Colors.black))
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                            ))
                                       ]),
                                     ),
                                   )
