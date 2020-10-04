@@ -74,7 +74,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       myVideoController.initialize();
       myVideoController.setLooping(true);
       myVideoController.play();
-      directory = await getExternalStorageDirectory();
+      directory = await getApplicationDocumentsDirectory();
       print(directory);
       if (!Directory(directory.path + Platform.pathSeparator + 'Download').existsSync()) {
         Directory(directory.path + Platform.pathSeparator + 'Download').createSync();
