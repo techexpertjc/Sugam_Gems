@@ -74,13 +74,16 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       myVideoController.initialize();
       myVideoController.setLooping(true);
       myVideoController.play();
+      Directory androidDirectory = await getExternalStorageDirectory();
       directory = Platform.isAndroid
-          ? await getExternalStorageDirectory()
+          ? Directory(androidDirectory.path
+              .toString()
+              .replaceAll('/Android/data/com.stiensgate.sugam_gems/files', ''))
           : await getApplicationDocumentsDirectory();
-      print(directory);
-      if (!Directory(directory.path + Platform.pathSeparator + 'Download')
+      print(directory.toString());
+      if (!Directory(directory.path + Platform.pathSeparator + 'Downloads')
           .existsSync()) {
-        Directory(directory.path + Platform.pathSeparator + 'Download')
+        Directory(directory.path + Platform.pathSeparator + 'Downloads')
             .createSync();
       }
       PDFDocument.fromURL(data["CERTI"]).then((value) {
@@ -391,7 +394,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                             url: dwnloadUrl,
                             savedDir: directory.path +
                                 Platform.pathSeparator +
-                                'Download',
+                                'Downloads',
                             showNotification:
                                 true, // show download progress in status bar (for Android)
                             openFileFromNotification:
@@ -399,7 +402,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                           );
                           print(directory.path +
                               Platform.pathSeparator +
-                              'Download');
+                              'Downloads');
                           scaffoldKey.currentState.showSnackBar(
                               SnackBar(content: Text('Download Started')));
                         }
