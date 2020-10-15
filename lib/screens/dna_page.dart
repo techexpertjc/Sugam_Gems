@@ -74,12 +74,15 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       myVideoController.initialize();
       myVideoController.setLooping(true);
       myVideoController.play();
+      Directory androidDirectory = await getExternalStorageDirectory();
       directory = Platform.isAndroid
-          ? await getExternalStorageDirectory()
+          ? Directory(androidDirectory.path
+              .toString()
+              .replaceAll('/Android/data/com.stiensgate.sugam_gems/files', ''))
           : await getApplicationDocumentsDirectory();
-      print(directory);
-      if (!Directory(directory.path + Platform.pathSeparator + 'Download').existsSync()) {
-        Directory(directory.path + Platform.pathSeparator + 'Download').createSync();
+      print(directory.toString());
+      if (!Directory(directory.path + Platform.pathSeparator + 'Downloads').existsSync()) {
+        Directory(directory.path + Platform.pathSeparator + 'Downloads').createSync();
       }
       PDFDocument.fromURL(data["CERTI"]).then((value) {
         setState(() {
@@ -355,13 +358,13 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                         if (await Permission.storage.request().isGranted) {
                           final taskId = await FlutterDownloader.enqueue(
                             url: dwnloadUrl,
-                            savedDir: directory.path + Platform.pathSeparator + 'Download',
+                            savedDir: directory.path + Platform.pathSeparator + 'Downloads',
                             showNotification:
                                 true, // show download progress in status bar (for Android)
                             openFileFromNotification:
                                 true, // click on notification to open downloaded file (for Android)
                           );
-                          print(directory.path + Platform.pathSeparator + 'Download');
+                          print(directory.path + Platform.pathSeparator + 'Downloads');
                           scaffoldKey.currentState
                               .showSnackBar(SnackBar(content: Text('Download Started')));
                         }
