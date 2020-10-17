@@ -55,6 +55,8 @@
 	<string>This access is required to continue</string>
 	<key>NSMotionUsageDescription</key>
 	<string>This access is required to continue</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access required to store files</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>This access is required to continue</string>
 	<key>UIBackgroundModes</key>
