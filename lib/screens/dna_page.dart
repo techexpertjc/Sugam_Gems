@@ -430,6 +430,8 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               .request()
                               .isGranted) {
                             if (myController.index == 1) {
+                              scaffoldKey.currentState.showSnackBar(
+                                  SnackBar(content: Text('Download Started')));
                               GallerySaver.saveVideo(dwnloadUrl)
                                   .then((value) => {
                                         scaffoldKey.currentState.showSnackBar(
@@ -440,6 +442,8 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                   .catchError((onError) => {log(onError)});
                             }
                             if (myController.index == 2) {
+                              scaffoldKey.currentState.showSnackBar(
+                                  SnackBar(content: Text('Download Started')));
                               GallerySaver.saveImage(dwnloadUrl)
                                   .then((value) => {
                                         scaffoldKey.currentState.showSnackBar(
