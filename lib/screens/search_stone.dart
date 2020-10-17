@@ -349,6 +349,9 @@ class _StoneSearchState extends State<StoneSearch> {
                 builder: (context) => SearchResults(
                       reqData: data,
                     )));
+      } else {
+        scaffoldKey.currentState.showSnackBar(SnackBar(
+            content: Text('Please connect the device to active Internet')));
       }
     } on SocketException catch (_) {
       scaffoldKey.currentState.showSnackBar(SnackBar(

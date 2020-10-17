@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
               bodyText1: TextStyle(fontFamily: 'ClearSansLight'),
               bodyText2: TextStyle(fontFamily: 'ClearSansLight'),
               headline6: TextStyle(fontFamily: 'ClearSansLight'))),
-      home: HomeScreen(),
+      home: SplashScreen(),
       routes: routes,
     );
   }
