@@ -380,12 +380,15 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                   true, // show download progress in status bar (for Android)
                               openFileFromNotification:
                                   true, // click on notification to open downloaded file (for Android)
-                            );
+                            ).then((value) => scaffoldKey.currentState
+                                .showSnackBar(SnackBar(content: Text('Download Completed'))));
                             print(directory.path + Platform.pathSeparator + 'Downloads');
                             scaffoldKey.currentState
                                 .showSnackBar(SnackBar(content: Text('Download Started')));
                           } else if (await Permission.mediaLibrary.request().isGranted) {
                             if (myController.index == 1) {
+                              scaffoldKey.currentState
+                                  .showSnackBar(SnackBar(content: Text('Download Started')));
                               GallerySaver.saveVideo(dwnloadUrl)
                                   .then((value) => {
                                         scaffoldKey.currentState.showSnackBar(
@@ -394,6 +397,8 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                   .catchError((onError) => {log(onError)});
                             }
                             if (myController.index == 2) {
+                              scaffoldKey.currentState
+                                  .showSnackBar(SnackBar(content: Text('Download Started')));
                               GallerySaver.saveImage(dwnloadUrl)
                                   .then((value) => {
                                         scaffoldKey.currentState.showSnackBar(
