@@ -79,17 +79,15 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       myVideoController.initialize();
       myVideoController.setLooping(true);
       myVideoController.play();
-      Directory androidDirectory = await getExternalStorageDirectory();
+      Directory androidDirectory = Platform.isAndroid ? await getExternalStorageDirectory() : null;
       directory = Platform.isAndroid
           ? Directory(androidDirectory.path
               .toString()
               .replaceAll('/Android/data/com.stiensgate.sugam_gems/files', ''))
           : await getApplicationDocumentsDirectory();
       print(directory.toString());
-      if (!Directory(directory.path + Platform.pathSeparator + 'Downloads')
-          .existsSync()) {
-        Directory(directory.path + Platform.pathSeparator + 'Downloads')
-            .createSync();
+      if (!Directory(directory.path + Platform.pathSeparator + 'Downloads').existsSync()) {
+        Directory(directory.path + Platform.pathSeparator + 'Downloads').createSync();
       }
       PDFDocument.fromURL(data["CERTI"]).then((value) {
         setState(() {
@@ -132,13 +130,10 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                       controller: myController,
                       tabs: <Widget>[
                         RaisedButton(
-                          color: myController.index == 0
-                              ? Colors.blue
-                              : Colors.grey,
+                          color: myController.index == 0 ? Colors.blue : Colors.grey,
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             if (!FocusScope.of(context).hasPrimaryFocus) {
                               FocusScope.of(context).unfocus();
@@ -156,20 +151,16 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Cert',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
+                                style: TextStyle(fontSize: 15, color: Colors.white),
                               )
                             ],
                           ),
                         ),
                         RaisedButton(
-                          color: myController.index == 1
-                              ? Colors.blue
-                              : Colors.grey,
+                          color: myController.index == 1 ? Colors.blue : Colors.grey,
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             if (!FocusScope.of(context).hasPrimaryFocus) {
                               FocusScope.of(context).unfocus();
@@ -187,20 +178,16 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Video',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
+                                style: TextStyle(fontSize: 15, color: Colors.white),
                               )
                             ],
                           ),
                         ),
                         RaisedButton(
-                          color: myController.index == 2
-                              ? Colors.blue
-                              : Colors.grey,
+                          color: myController.index == 2 ? Colors.blue : Colors.grey,
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.transparent),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
                           onPressed: () {
                             if (!FocusScope.of(context).hasPrimaryFocus) {
                               FocusScope.of(context).unfocus();
@@ -219,8 +206,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                               ),
                               Text(
                                 'Image',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
+                                style: TextStyle(fontSize: 15, color: Colors.white),
                               )
                             ],
                           ),
@@ -235,8 +221,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                         Container(
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              color: Colors.grey),
+                              border: Border.all(color: Colors.grey), color: Colors.grey),
                           child: pdfLoaded
                               ? pdfPage
                               : Center(
@@ -247,23 +232,20 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                           aspectRatio: myVideoController.value.aspectRatio,
                           child: videoLoaded
                               ? Container(
-                                  child: Stack(
-                                      alignment: Alignment.bottomCenter,
-                                      children: <Widget>[
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: VideoPlayer(myVideoController),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: PlayPauseOverlay(
-                                            controller: myVideoController,
-                                          ),
-                                        ),
-                                        VideoProgressIndicator(
-                                            myVideoController,
-                                            allowScrubbing: true),
-                                      ]),
+                                  child:
+                                      Stack(alignment: Alignment.bottomCenter, children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      child: VideoPlayer(myVideoController),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      child: PlayPauseOverlay(
+                                        controller: myVideoController,
+                                      ),
+                                    ),
+                                    VideoProgressIndicator(myVideoController, allowScrubbing: true),
+                                  ]),
                                 )
                               : noPreview,
                         ),
@@ -297,29 +279,22 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                   body: videoLoaded
                                       ? Center(
                                           child: AspectRatio(
-                                            aspectRatio: myVideoController
-                                                .value.aspectRatio,
+                                            aspectRatio: myVideoController.value.aspectRatio,
                                             child: Container(
                                               child: Stack(
-                                                  alignment:
-                                                      Alignment.bottomCenter,
+                                                  alignment: Alignment.bottomCenter,
                                                   children: <Widget>[
                                                     Container(
-                                                      padding:
-                                                          EdgeInsets.all(10),
-                                                      child: VideoPlayer(
-                                                          myVideoController),
+                                                      padding: EdgeInsets.all(10),
+                                                      child: VideoPlayer(myVideoController),
                                                     ),
                                                     Container(
-                                                      padding:
-                                                          EdgeInsets.all(10),
+                                                      padding: EdgeInsets.all(10),
                                                       child: PlayPauseOverlay(
-                                                        controller:
-                                                            myVideoController,
+                                                        controller: myVideoController,
                                                       ),
                                                     ),
-                                                    VideoProgressIndicator(
-                                                        myVideoController,
+                                                    VideoProgressIndicator(myVideoController,
                                                         allowScrubbing: true),
                                                   ]),
                                             ),
@@ -335,30 +310,22 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 ),
                                 body: Container(
                                   child: FadeInImage(
-                                    imageErrorBuilder:
-                                        (context, Obj, stackTrc) {
+                                    imageErrorBuilder: (context, Obj, stackTrc) {
                                       return Center(
                                         child: SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              2,
+                                          height: MediaQuery.of(context).size.height / 2,
                                           child: Scaffold(
-                                              body: Center(
-                                                  child: Text(
-                                                      'Cant load imaage'))),
+                                              body: Center(child: Text('Cant load imaage'))),
                                         ),
                                       );
                                     },
                                     image: NetworkImage(data['IMG']),
-                                    placeholder:
-                                        AssetImage('images/placeholder.png'),
+                                    placeholder: AssetImage('images/placeholder.png'),
                                   ),
                                 ),
                               );
                             }
-                            showDialog(
-                                context: context, child: fullScreenWidget);
+                            showDialog(context: context, child: fullScreenWidget);
                           },
                           child: Icon(
                             Icons.fullscreen,
@@ -404,8 +371,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                 Container(
                   child: MaterialButton(
                       color: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       child: Icon(
                         Icons.file_download,
                         color: Colors.white,
@@ -430,64 +396,49 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                           if (await Permission.storage.request().isGranted) {
                             final taskId = await FlutterDownloader.enqueue(
                               url: dwnloadUrl,
-                              savedDir: directory.path +
-                                  Platform.pathSeparator +
-                                  'Downloads',
+                              savedDir: directory.path + Platform.pathSeparator + 'Downloads',
                               showNotification:
                                   true, // show download progress in status bar (for Android)
                               openFileFromNotification:
                                   true, // click on notification to open downloaded file (for Android)
                             );
-                            print(directory.path +
-                                Platform.pathSeparator +
-                                'Downloads');
-                            scaffoldKey.currentState.showSnackBar(
-                                SnackBar(content: Text('Download Started')));
+                            print(directory.path + Platform.pathSeparator + 'Downloads');
+                            scaffoldKey.currentState
+                                .showSnackBar(SnackBar(content: Text('Download Started')));
                           }
                         } else {
                           if (myController.index == 0 &&
                               await Permission.storage.request().isGranted) {
                             final taskId = await FlutterDownloader.enqueue(
                               url: dwnloadUrl,
-                              savedDir: directory.path +
-                                  Platform.pathSeparator +
-                                  'Downloads',
+                              savedDir: directory.path + Platform.pathSeparator + 'Downloads',
                               showNotification:
                                   true, // show download progress in status bar (for Android)
                               openFileFromNotification:
                                   true, // click on notification to open downloaded file (for Android)
                             ).then((value) => scaffoldKey.currentState
-                                .showSnackBar(SnackBar(
-                                    content: Text('Download Completed'))));
-                            print(directory.path +
-                                Platform.pathSeparator +
-                                'Downloads');
-                            scaffoldKey.currentState.showSnackBar(
-                                SnackBar(content: Text('Download Started')));
-                          } else if (await Permission.mediaLibrary
-                              .request()
-                              .isGranted) {
+                                .showSnackBar(SnackBar(content: Text('Download Completed'))));
+                            print(directory.path + Platform.pathSeparator + 'Downloads');
+                            scaffoldKey.currentState
+                                .showSnackBar(SnackBar(content: Text('Download Started')));
+                          } else if (await Permission.mediaLibrary.request().isGranted) {
                             if (myController.index == 1) {
-                              scaffoldKey.currentState.showSnackBar(
-                                  SnackBar(content: Text('Download Started')));
+                              scaffoldKey.currentState
+                                  .showSnackBar(SnackBar(content: Text('Download Started')));
                               GallerySaver.saveVideo(dwnloadUrl)
                                   .then((value) => {
                                         scaffoldKey.currentState.showSnackBar(
-                                            SnackBar(
-                                                content:
-                                                    Text('Download Complete')))
+                                            SnackBar(content: Text('Download Complete')))
                                       })
                                   .catchError((onError) => {log(onError)});
                             }
                             if (myController.index == 2) {
-                              scaffoldKey.currentState.showSnackBar(
-                                  SnackBar(content: Text('Download Started')));
+                              scaffoldKey.currentState
+                                  .showSnackBar(SnackBar(content: Text('Download Started')));
                               GallerySaver.saveImage(dwnloadUrl)
                                   .then((value) => {
                                         scaffoldKey.currentState.showSnackBar(
-                                            SnackBar(
-                                                content:
-                                                    Text('Download Complete')))
+                                            SnackBar(content: Text('Download Complete')))
                                       })
                                   .catchError((onError) => {log(onError)});
                             }
@@ -518,9 +469,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Packet No',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -546,9 +495,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   '%',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -580,9 +527,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Lab',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -608,9 +553,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Total',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -642,9 +585,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Certi No',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -691,9 +632,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Shape',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -719,9 +658,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Cut',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -753,9 +690,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Carat',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -781,9 +716,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Polish',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -815,9 +748,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Color',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -843,9 +774,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Sym',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -877,9 +806,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Clarity',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
@@ -905,9 +832,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                                 width: 80,
                                 child: Text(
                                   'Fls',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 )),
                             Expanded(
                               child: Container(
