@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:esys_flutter_share/esys_flutter_share.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+// import 'package:flutter_share/flutter_share.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -361,7 +365,39 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
                             color: Colors.black,
                           ),
                         ),
-                      )
+                      ),
+                      Positioned(
+                          top: 20,
+                          right: 20,
+                          child: InkWell(
+                            onTap: () async {
+                              var mime;
+                              scaffoldKey.currentState.showSnackBar(SnackBar(
+                                  content:
+                                      Text('Downloading file please wait...')));
+                              myController.index == 0
+                                  ? mime = "appliation/pdf"
+                                  : myController.index == 1
+                                      ? mime = "video/mp4"
+                                      : mime = "image/jpg";
+                              var fileName = data["STONE_ID"] +
+                                  dwnloadUrl
+                                      .substring(dwnloadUrl.lastIndexOf('.'));
+                              try {
+                                var request = await HttpClient()
+                                    .getUrl(Uri.parse(dwnloadUrl));
+                                var response = await request.close();
+                                Uint8List bytes =
+                                    await consolidateHttpClientResponseBytes(
+                                        response);
+                                await Share.file(
+                                    data['STONE_ID'], fileName, bytes, mime);
+                              } catch (e) {
+                                print('error: $e');
+                              }
+                            },
+                            child: Icon(Icons.share),
+                          ))
                     ],
                   ),
                 ),
