@@ -219,6 +219,12 @@ class _StoneSearchState extends State<StoneSearch> {
     if (vvs2Selected) {
       clarity = clarity + ',' + 'VVS2';
     }
+    if (vs1Selected) {
+      clarity = clarity + ',' + 'VS1';
+    }
+    if (vs2Selected) {
+      clarity = clarity + ',' + 'VS2';
+    }
     if (si1Selected) {
       clarity = clarity + ',' + 'SI1';
     }
