@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -147,13 +148,16 @@ class _StoneSearchState extends State<StoneSearch> {
 
   Future<void> searchStone() async {
     String shape = '', carats = '', clarity = '', colourList = '';
+
     if (_caratList.length < 1) {
       if (fromCaratCntrlr.text != '') {
         if (toCaratCntrlr.text != '') {
-          _caratList.add(
-              fromCaratCntrlr.text.trim() + '-' + toCaratCntrlr.text.trim());
+          _caratList.add(fromCaratCntrlr.text.trim().replaceAll(',', '.') +
+              '-' +
+              toCaratCntrlr.text.trim().replaceAll(',', '.'));
         } else {
-          _caratList.add(fromCaratCntrlr.text.trim() + '-' + '99');
+          _caratList.add(
+              fromCaratCntrlr.text.trim().replaceAll(',', '.') + '-' + '99');
         }
         fromCaratCntrlr.text = '';
         toCaratCntrlr.text = '';
@@ -279,15 +283,18 @@ class _StoneSearchState extends State<StoneSearch> {
     if (symmList.length > 0 && symmList[0] == ',')
       symmList = symmList.substring(1);
 
+    log(selectedFluo.toString());
     var floroList = '';
     selectedFluo.forEach((key, value) {
+      log(value.toString());
+      log(key);
       if (value) {
         floroList = floroList + ',' + key;
       }
     });
     if (floroList.length > 0 && floroList[0] == ',')
       floroList = floroList.substring(1);
-
+    log(floroList);
     var certiList = '';
     selectedCerti.forEach((key, value) {
       if (value) {
@@ -343,7 +350,7 @@ class _StoneSearchState extends State<StoneSearch> {
     //   '"Start"': '"0"',
     //   '"End"': '"10"'
     // };
-
+    log(data.toString());
     try {
       final result = await InternetAddress.lookup('google.com');
       print(certiList);
@@ -444,12 +451,19 @@ class _StoneSearchState extends State<StoneSearch> {
                         if (_caratList.length < 1) {
                           if (fromCaratCntrlr.text != '') {
                             if (toCaratCntrlr.text != '') {
-                              _caratList.add(fromCaratCntrlr.text.trim() +
+                              _caratList.add(fromCaratCntrlr.text
+                                      .trim()
+                                      .replaceAll(',', '.') +
                                   '-' +
-                                  toCaratCntrlr.text.trim());
+                                  toCaratCntrlr.text
+                                      .trim()
+                                      .replaceAll(',', '.'));
                             } else {
-                              _caratList.add(
-                                  fromCaratCntrlr.text.trim() + '-' + '99');
+                              _caratList.add(fromCaratCntrlr.text
+                                      .trim()
+                                      .replaceAll(',', '.') +
+                                  '-' +
+                                  '99');
                             }
                             fromCaratCntrlr.text = '';
                             toCaratCntrlr.text = '';
