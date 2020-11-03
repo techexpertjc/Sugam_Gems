@@ -1254,6 +1254,7 @@ class NumberTextInputFormatter extends TextInputFormatter {
   }
 
   bool isValid(String text) {
+    text = text.replaceAll(',', '.');
     int dots = '.'.allMatches(text).length;
 
     if (dots == 0 && text.length < 4) {
