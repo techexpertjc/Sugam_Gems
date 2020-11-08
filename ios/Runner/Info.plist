@@ -44,7 +44,7 @@
 		</dict>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>This access is required to continue</string>
+	<string>This access is required to store media of diamond</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This access is required to continue</string>
 	<key>NSContactsUsageDescription</key>
