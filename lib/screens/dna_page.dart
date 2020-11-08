@@ -79,6 +79,7 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
       myVideoController.initialize();
       myVideoController.setLooping(true);
       myVideoController.play();
+
       if (await Permission.storage.request().isGranted) {
         Directory androidDirectory =
             Platform.isAndroid ? await getExternalStorageDirectory() : null;
@@ -99,8 +100,10 @@ class _DnaPageState extends State<DnaPage> with SingleTickerProviderStateMixin {
           certiPdf = value;
 
           certiPdf.get().then((val) {
-            pdfPage = val;
-            pdfLoaded = true;
+            setState(() {
+              pdfPage = val;
+              pdfLoaded = true;
+            });
           });
         });
       });
