@@ -18,6 +18,7 @@ class _SearchResultsState extends State<SearchResults> {
   List searchResultList;
   int pageCnt = 1, totalrecords;
   bool dataLoaded = false;
+  bool newDataLoading = true;
   @override
   void initState() {
     searchResultList = List();
@@ -92,6 +93,7 @@ class _SearchResultsState extends State<SearchResults> {
     int strt = pageCnt * 10 - 9, end = pageCnt * 10;
     if (strt <= totalrecords && pageCnt >= 1) {
       if (end > totalrecords) end = totalrecords;
+      newDataLoading = true;
       requestData["Start"] = strt.toString();
       requestData["End"] = end.toString();
 
@@ -111,7 +113,7 @@ class _SearchResultsState extends State<SearchResults> {
       });
     } else {
       print(strt.toString() + ' ' + totalrecords.toString());
-
+      newDataLoading = false;
       pageCnt--;
       if (pageCnt < 1) pageCnt = 1;
     }
@@ -123,299 +125,310 @@ class _SearchResultsState extends State<SearchResults> {
   int selectStoneNo = 0;
 
   Widget buildSearchResultTile(BuildContext context, int i) {
-    isChecked.add(false);
-    return InkWell(
-      onTap: () async {
-        try {
-          final result = await InternetAddress.lookup('google.com');
-          if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-            print('connected');
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => DnaPage(
-                          obj: searchResultList[i],
-                        )));
+    if (i < searchResultList.length) {
+      isChecked.add(false);
+      return InkWell(
+        onTap: () async {
+          try {
+            final result = await InternetAddress.lookup('google.com');
+            if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+              print('connected');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DnaPage(
+                            obj: searchResultList[i],
+                          )));
+            }
+          } on SocketException catch (_) {
+            scaffoldKey.currentState.showSnackBar(SnackBar(
+                content: Text('Please connect the device to active Internet')));
           }
-        } on SocketException catch (_) {
-          scaffoldKey.currentState.showSnackBar(SnackBar(
-              content: Text('Please connect the device to active Internet')));
-        }
-      },
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.all(5),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Container(
-                  width: 20,
-                  child: Checkbox(
-                      // tristate: false,
-                      value: isChecked[i],
-                      onChanged: (bool val) {
-                        setState(() {
-                          isChecked[i] = val;
-                          if (val) {
-                            selectStoneNo++;
-                            discAdded
-                                .add(double.parse(searchResultList[i]["DISC"]));
-                            selectCarat = selectCarat +
-                                double.parse(searchResultList[i]["CRTS"]);
-                            totalAmnt = totalAmnt +
-                                double.parse(searchResultList[i]["TOTAL"]);
-                          } else {
-                            selectStoneNo--;
-                            discAdded.remove(
-                                double.parse(searchResultList[i]["DISC"]));
-                            selectCarat = selectCarat -
-                                double.parse(searchResultList[i]["CRTS"]);
-                            totalAmnt = totalAmnt -
-                                double.parse(searchResultList[i]["TOTAL"]);
-                          }
-                          var temp = 0.0;
-                          discAdded.forEach((element) {
-                            temp = temp + element;
+        },
+        child: Card(
+          child: Container(
+            padding: EdgeInsets.all(5),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    width: 20,
+                    child: Checkbox(
+                        // tristate: false,
+                        value: isChecked[i],
+                        onChanged: (bool val) {
+                          setState(() {
+                            isChecked[i] = val;
+                            if (val) {
+                              selectStoneNo++;
+                              discAdded.add(
+                                  double.parse(searchResultList[i]["DISC"]));
+                              selectCarat = selectCarat +
+                                  double.parse(searchResultList[i]["CRTS"]);
+                              totalAmnt = totalAmnt +
+                                  double.parse(searchResultList[i]["TOTAL"]);
+                            } else {
+                              selectStoneNo--;
+                              discAdded.remove(
+                                  double.parse(searchResultList[i]["DISC"]));
+                              selectCarat = selectCarat -
+                                  double.parse(searchResultList[i]["CRTS"]);
+                              totalAmnt = totalAmnt -
+                                  double.parse(searchResultList[i]["TOTAL"]);
+                            }
+                            var temp = 0.0;
+                            discAdded.forEach((element) {
+                              temp = temp + element;
+                            });
+                            avgDisc = temp / discAdded.length;
+                            perCarat = totalAmnt / selectCarat;
+                            if (discAdded.length == 0) {
+                              avgDisc = 0.00;
+                              selectCarat = 0.00;
+                              totalAmnt = 0.00;
+                              perCarat = 0.00;
+                            }
                           });
-                          avgDisc = temp / discAdded.length;
-                          perCarat = totalAmnt / selectCarat;
-                          if (discAdded.length == 0) {
-                            avgDisc = 0.00;
-                            selectCarat = 0.00;
-                            totalAmnt = 0.00;
-                            perCarat = 0.00;
-                          }
-                        });
-                      }),
-                ),
-              ),
-              Expanded(
-                flex: 11,
-                child: Container(
-                  padding: EdgeInsets.only(left: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          searchResultList[i]["SHAPE"] +
-                              ', ' +
-                              searchResultList[i]["CRTS"] +
-                              ' ct, ' +
-                              searchResultList[i]["COL"] +
-                              ', ' +
-                              searchResultList[i]["PUR"] +
-                              ', ' +
-                              searchResultList[i]["LAB"],
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                        // width: 250,
-                        height: 100,
-                        padding: EdgeInsets.only(top: 10),
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              height: 30,
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 70,
-                                    child: RichText(
-                                      text: TextSpan(children: <TextSpan>[
-                                        TextSpan(
-                                            text: 'Cut: ',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                        TextSpan(
-                                            text: searchResultList[i]["CUT"],
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12,
-                                            ))
-                                      ]),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5.0),
-                                    child: RichText(
-                                      text: TextSpan(children: <TextSpan>[
-                                        TextSpan(
-                                            text: 'Fluo: ',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                            )),
-                                        TextSpan(
-                                            text: searchResultList[i]["FLUO"],
-                                            style:
-                                                TextStyle(color: Colors.black))
-                                      ]),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: 30,
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 70,
-                                    child: RichText(
-                                      text: TextSpan(children: <TextSpan>[
-                                        TextSpan(
-                                            text: 'Pol: ',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                            )),
-                                        TextSpan(
-                                            text: searchResultList[i]["POL"],
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12,
-                                            ))
-                                      ]),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5.0),
-                                    child: RichText(
-                                      text: TextSpan(children: <TextSpan>[
-                                        TextSpan(
-                                            text: 'Meas: ',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                            )),
-                                        TextSpan(
-                                            text: searchResultList[i]["M1"] +
-                                                'X' +
-                                                searchResultList[i]["M2"] +
-                                                'X' +
-                                                searchResultList[i]["M3"],
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 12))
-                                      ]),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: 30,
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 70,
-                                    child: RichText(
-                                      text: TextSpan(children: <TextSpan>[
-                                        TextSpan(
-                                            text: 'Sym: ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                        TextSpan(
-                                            text: searchResultList[i]["SYM"],
-                                            style:
-                                                TextStyle(color: Colors.black))
-                                      ]),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5.0),
-                                    child: RichText(
-                                      text: TextSpan(children: <TextSpan>[
-                                        TextSpan(
-                                            text: 'Certi: ',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                            )),
-                                        TextSpan(
-                                            text: searchResultList[i]["CERTNO"],
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12,
-                                            ))
-                                      ]),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                        }),
                   ),
                 ),
-              ),
-              Expanded(
-                  flex: 6,
+                Expanded(
+                  flex: 11,
                   child: Container(
-                    // width: 100,
-                    // color: Colors.black,
-                    padding: EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 5),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          // color: Colors.black,
                           child: Text(
-                            searchResultList[i]["STONE_ID"],
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                            searchResultList[i]["SHAPE"] +
+                                ', ' +
+                                searchResultList[i]["CRTS"] +
+                                ' ct, ' +
+                                searchResultList[i]["COL"] +
+                                ', ' +
+                                searchResultList[i]["PUR"] +
+                                ', ' +
+                                searchResultList[i]["LAB"],
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
-                          width: (12 * 100 / 36) * 10,
-                          color: Color(0xFFF0F8FF),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, right: 10.0, top: 10, bottom: 20),
-                            child: Column(children: <Widget>[
-                              Text('Total'),
-                              Text(
-                                searchResultList[i]["TOTAL"],
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                          // width: 250,
+                          height: 100,
+                          padding: EdgeInsets.only(top: 10),
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                height: 30,
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 70,
+                                      child: RichText(
+                                        text: TextSpan(children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Cut: ',
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold)),
+                                          TextSpan(
+                                              text: searchResultList[i]["CUT"],
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                              ))
+                                        ]),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5.0),
+                                      child: RichText(
+                                        text: TextSpan(children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Fluo: ',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              )),
+                                          TextSpan(
+                                              text: searchResultList[i]["FLUO"],
+                                              style: TextStyle(
+                                                  color: Colors.black))
+                                        ]),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                              Text('Discount'),
-                              Text(searchResultList[i]["DISC"],
-                                  style: TextStyle(fontWeight: FontWeight.bold))
-                            ]),
+                              Container(
+                                height: 30,
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 70,
+                                      child: RichText(
+                                        text: TextSpan(children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Pol: ',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              )),
+                                          TextSpan(
+                                              text: searchResultList[i]["POL"],
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                              ))
+                                        ]),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5.0),
+                                      child: RichText(
+                                        text: TextSpan(children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Meas: ',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              )),
+                                          TextSpan(
+                                              text: searchResultList[i]["M1"] +
+                                                  'X' +
+                                                  searchResultList[i]["M2"] +
+                                                  'X' +
+                                                  searchResultList[i]["M3"],
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 12))
+                                        ]),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                height: 30,
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 70,
+                                      child: RichText(
+                                        text: TextSpan(children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Sym: ',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold)),
+                                          TextSpan(
+                                              text: searchResultList[i]["SYM"],
+                                              style: TextStyle(
+                                                  color: Colors.black))
+                                        ]),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5.0),
+                                      child: RichText(
+                                        text: TextSpan(children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Certi: ',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              )),
+                                          TextSpan(
+                                              text: searchResultList[i]
+                                                  ["CERTNO"],
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                              ))
+                                        ]),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  ))
-            ],
+                  ),
+                ),
+                Expanded(
+                    flex: 6,
+                    child: Container(
+                      // width: 100,
+                      // color: Colors.black,
+                      padding: EdgeInsets.only(left: 10),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            // color: Colors.black,
+                            child: Text(
+                              searchResultList[i]["STONE_ID"],
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          Container(
+                            width: (12 * 100 / 36) * 10,
+                            color: Color(0xFFF0F8FF),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10.0, right: 10.0, top: 10, bottom: 20),
+                              child: Column(children: <Widget>[
+                                Text('Total'),
+                                Text(
+                                  searchResultList[i]["TOTAL"],
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text('Discount'),
+                                Text(searchResultList[i]["DISC"],
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold))
+                              ]),
+                            ),
+                          )
+                        ],
+                      ),
+                    ))
+              ],
+            ),
           ),
         ),
-      ),
-    );
-    ;
+      );
+      ;
+    } else {
+      return newDataLoading
+          ? Container(
+              padding: EdgeInsets.all(10),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          : Container();
+    }
   }
 
   ScrollController myController = ScrollController();
   Widget getSearchResultsList() {
     return ListView.builder(
-      itemCount: searchResultList.length,
+      itemCount: searchResultList.length + 1,
       controller: myController,
       itemBuilder: (context, i) => buildSearchResultTile(context, i),
     );
