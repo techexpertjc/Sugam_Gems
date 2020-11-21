@@ -83,6 +83,10 @@ class _SearchResultsState extends State<SearchResults> {
                       child: Text('Ok'))
                 ],
               ));
+        } else if (totalrecords == searchResultList.length) {
+          setState(() {
+            newDataLoading = false;
+          });
         }
       });
     });
@@ -113,7 +117,10 @@ class _SearchResultsState extends State<SearchResults> {
       });
     } else {
       print(strt.toString() + ' ' + totalrecords.toString());
-      newDataLoading = false;
+      setState(() {
+        newDataLoading = false;
+      });
+
       pageCnt--;
       if (pageCnt < 1) pageCnt = 1;
     }
